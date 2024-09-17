@@ -49,7 +49,7 @@ header{
     margin: 0 auto;
     background-color: #f8f9fad9;
     height: 100px;
-    margin-top: 45px;
+    margin-top: 30px;
     font-size: 25px;
     color: black;
     padding: 20px;
@@ -60,7 +60,11 @@ header{
     font-style: normal;
     text-align: center;
 }
+
 .contact input{
-    margin-top: 30px;
+    margin-top: 20px;
+    border: 0px;
+    padding: 10px;
+    outline: none;
     
 }
