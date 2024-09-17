@@ -13,16 +13,19 @@ header{
     background-position: 10%;
     font-size: 50px;
     color: white;
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 .top-panel{
     height: 80px;
     width: 800px;
     margin: 0 auto;
-    font-size: 20px;
+    font-size: 15px;
     display: flex;
     gap: 40px;
-    padding-top: 40px;
     flex-wrap: wrap;
+    align-items: center;
 }
 .top-panel p{
     display: inline;
@@ -32,10 +35,32 @@ header{
     list-style: none;
     display: inline;
     justify-content: space-between;
+    margin-left: 13px;
 }
 .top-panel a{
     text-decoration: none;
     color: white;
 }
 #logo{
+    font-size: 25px;
+}
+.contact{
+    width: 300px;
+    margin: 0 auto;
+    background-color: #f8f9fad9;
+    height: 100px;
+    margin-top: 45px;
+    font-size: 25px;
+    color: black;
+    padding: 20px;
+}
+.contact label{
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    text-align: center;
+}
+.contact input{
+    margin-top: 30px;
+    
 }
