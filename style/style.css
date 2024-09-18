@@ -21,7 +21,7 @@ header{
 }
 .top-panel{
     height: 80px;
-    width: 800px;
+    width: 700px;
     margin: 0 auto;
     font-size: 15px;
     display: flex;
@@ -133,4 +133,84 @@ header{
       font-size: 15px;
       
     }
+    iframe[src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8323.93871663141!2d20.622298448788932!3d50.868589187458085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47178818af891105%3A0x5025d8b8c0cdcdf3!2z0JrQtdC70YzRhtC1!5e0!3m2!1sru!2spl!4v1726689708257!5m2!1sru!2spl"]{
+        width: 200px;
+        height: 300px;
+    }
+
   }
+  footer {
+    position: relative;
+    bottom: 0;
+   width:100%;
+   height:150px;   /* Height of the footer */
+   background:#6cf;
+   text-align: center;
+   font-family: "Inria Sans", sans-serif;
+   font-weight: 500;
+   
+ 
+  }
+  footer li{
+    list-style: none;
+    margin: 20px;
+  }
+  footer a{
+    text-decoration: none;
+    color: black;
+  }
+  iframe[src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8323.93871663141!2d20.622298448788932!3d50.868589187458085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47178818af891105%3A0x5025d8b8c0cdcdf3!2z0JrQtdC70YzRhtC1!5e0!3m2!1sru!2spl!4v1726689708257!5m2!1sru!2spl"] {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 30px;
+  
+  }
+
+
+
+.map-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.map {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.left, .right {
+    flex: 1;
+    min-width: 300px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.map-iframe {
+    flex-basis: 100%;
+    text-align: center;
+}
+
+.map-iframe iframe {
+    width: 100%;
+    max-width: 600px;
+    height: 450px;
+    border: 0;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .map {
+        flex-direction: column;
+    }
+    .map-iframe {
+        width: 300px;
+    }
+}
