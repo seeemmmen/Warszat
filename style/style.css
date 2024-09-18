@@ -6,7 +6,7 @@
 
 header{
     height: 500px;
-    background-image: url('/img/back.jpg');
+    background-image: url('../img/back.jpg');
     background-repeat: no-repeat;
     width: 100%;
     background-size: cover;
@@ -54,19 +54,22 @@ header{
     color: black;
     padding: 20px;
 }
-.contact label{
-    font-family: "Inria Sans", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    text-align: center;
-}
+
 
 .contact input{
-    margin-top: 20px;
     border: 0px;
     padding: 10px;
     outline: none;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
     
+}
+.contact p{
+    text-align: center;
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 .ofera{
     width: 100%;
@@ -79,3 +82,24 @@ header{
 .contant    {
     justify-content: center;
 }
+
+@media (min-width: 319px) and (max-width: 480px) {
+    .top-panel{
+        width: 350px;
+        display: block;
+
+    }
+    .top-panel li{
+        font-size: 15px;
+        margin-left: 0px;
+        margin: 4px;
+    }
+    .top-panel ul{
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+    a[href="tel:+48817790968"]{
+        float: left;
+       
+    }
+  }
