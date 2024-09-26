@@ -17,9 +17,8 @@
         <div class="top-panel">
             <p id="logo"><span style="color: blue;">R</span>epai<span style="color: orange;">r</span></p>
 
-            <div class="menu-icon">&#9776;</div>
+            <div class="menu-icon" style="margin-right: 20px;">&#9776;</div>
             <nav id="mobile-nav">
-                <img src="./img/cross.png" alt="" width="20px" id="close">
                 <ul>
                     <li><a href="#home">Firmy</a></li>
                     <li><a href="#about">Zlecenia</a></li>
@@ -126,17 +125,19 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
       <script>
-       $(document).ready(function() {
-  
+      $(document).ready(function() {
+    let isOpen = false;
 
-    $('.menu-icon').click(function() {
-        
-            $('#mobile-nav').animate({ left: '50%' }, 100);
-       
-        
+    $('.menu-icon').click(function(event) {
+                   $('#mobile-nav').animate({ left: '50%' }, 300);
+
     });
-    $('#close').click(function(){
-        $('#mobile-nav').animate({ left: '100%' }, 100);
+
+    $(document).click(function(event) {
+        if (!$(event.target).closest('#mobile-nav, .menu-icon').length) {
+            $('#mobile-nav').animate({ left: '100%' }, 300);
+            isOpen = false;
+        }
     });
 });
 

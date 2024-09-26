@@ -147,6 +147,13 @@ header{
     .footer-logo img{
         width: 20px;
     }
+    .menu-icon{
+        display: block;
+    }
+    #mobile-nav{
+        display: block;
+    }
+
 
   }
   footer {
@@ -280,6 +287,13 @@ header{
     #icon-nav-mb{
        display: none;
     }
+    .menu-icon{
+        display: none;
+    }
+    #mobile-nav{
+        display: none;
+    }
+
 }
 .menu-icon {
     font-size: 30px;
@@ -307,6 +321,7 @@ header{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin-top: 20px;
 }
 
 #mobile-nav ul li {
