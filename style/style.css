@@ -106,6 +106,7 @@ header{
         display: block;
 
     }
+    
     .top-panel li{
         font-size: 15px;
         margin-left: 0px;
@@ -121,9 +122,10 @@ header{
        
     }
     #icon-nav-mb {
-        display: block;
-        width: 40px; /* Устанавливаем размер иконки, если нужно */
-        cursor: pointer; /* Удобный указатель для интерактивности */
+        display: inline;
+        float: right;
+        margin-left: 20px;
+     
     }
     .contant img{
         width: 50px;
@@ -195,9 +197,7 @@ header{
   }
 
   #icon-nav-mb{
-    display: none;
     width: 40px;
-    float: right;
 }
   .footer-socials a {
     margin-right: 10px;
@@ -270,5 +270,15 @@ header{
     }
     .map-iframe {
         width: 300px;
+    }
+}
+#img{
+    width: 40px;
+    background-color: red;
+   
+}
+@media(min-width:481px){
+    #icon-nav-mb{
+       display: none;
     }
 }
