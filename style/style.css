@@ -111,9 +111,8 @@ header{
         font-size: 15px;
         margin-left: 0px;
         margin: 4px;
-        display: none;
     }
-    .top-panel ul {
+    #ds  {
         display: none;
     }
     #header-phone{
@@ -281,4 +280,49 @@ header{
     #icon-nav-mb{
        display: none;
     }
+}
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 100%; 
+    width: 250px;
+    height: 100vh;
+    background-color: #3498db;
+    transition: left 0.3s ease-in;
+  
+}
+
+#mobile-nav ul {
+    list-style: none;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mobile-nav ul li {
+    display: block;
+   
+}
+
+#mobile-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#mobile-nav ul li a:hover {
+    text-decoration: underline;
+}
+#mobile-nav img{
+    margin: 10px;
 }
