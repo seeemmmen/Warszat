@@ -29,3 +29,24 @@ h1{
     font-style: normal;
     text-align: left;
 }
+@media (min-width: 319px) and (max-width: 480px) {
+    .contant{
+        width: 300px;
+        height: 1700px;
+        margin: 0 auto;
+        background-color: antiquewhite;
+        padding: 20px;
+    }
+    .contant p{
+        width: 250px;
+        height: 1620px;
+        font-family: "Inria Sans", sans-serif;
+        font-weight: 300;
+        font-style:normal;
+        font-size: 15px;
+    }
+
+
+
+
+}
