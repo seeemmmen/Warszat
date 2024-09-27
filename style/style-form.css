@@ -67,3 +67,10 @@ footer {
     border-top: 1px solid #444;
     padding-top: 10px;
   }
+  #logo{
+    font-size: 25px;
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+}

@@ -133,14 +133,13 @@
     let isOpen = false;
 
     $('.menu-icon').click(function(event) {
-                   $('#mobile-nav').animate({ left: '50%' }, 300);
+                   $('#mobile-nav').animate({ left: '50%' }, 200);
 
     });
 
     $(document).click(function(event) {
         if (!$(event.target).closest('#mobile-nav, .menu-icon').length) {
-            $('#mobile-nav').animate({ left: '100%' }, 300);
-            isOpen = false;
+            $('#mobile-nav').animate({ left: '150%' }, 200);
         }
     });
 });
