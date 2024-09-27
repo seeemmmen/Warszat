@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 500;
+    font-style:bold;
+    margin-bottom: 50px;
+}
+.contant{
+    width: 550px;
+    height: 1000px;
+    margin: 0 auto;
+    background-color: antiquewhite;
+    padding: 20px;
+}
+.contant p{
+    width: 500px;
+    height: 900px;
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 300;
+    font-style:normal;
+}
+#logo{
+    font-size: 25px;
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+}
