@@ -21,7 +21,8 @@ header{
 }
 .top-panel{
     height: 80px;
-    width: 700px;
+    width: 900px;
+    justify-content: center;
     margin: 0 auto;
     font-size: 15px;
     display: flex;
