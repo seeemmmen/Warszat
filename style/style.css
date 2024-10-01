@@ -26,8 +26,7 @@ header{
     margin: 0 auto;
     font-size: 15px;
     display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
+    gap: 20px;
     align-items: center;
 }
 .top-panel p{
@@ -342,3 +341,19 @@ header{
 #mobile-nav img{
     margin: 10px;
 }
+
+
+
+.regestration{
+    width: 250px;
+    height: 0px;
+    background-color: aliceblue;
+    right:150px;
+    transition: height 0.5s ease;
+    transition: height 0.5s ease;
+    margin-top: 20px;
+
+
+}
+
+
