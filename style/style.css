@@ -349,9 +349,9 @@ header{
     height: 0px;
     background-color: aliceblue;
     right:150px;
-    transition: height 0.5s ease;
-    transition: height 0.5s ease;
-    margin-top: 160px;
+    
+    margin-top: 180px;
+    z-index: 10;
 
 
 }
