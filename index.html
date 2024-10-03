@@ -28,7 +28,25 @@
                     <li><a href="#services">Porady</a></li>
                     <li><a href="./links/regalumin.html">Regalumin</a></li>
                     <li><a href="./links/form.html">Form</a></li>
-                    <li><a href="#login">Zaloguj sie</a></li>
+                    <li><a href="#login" id="open-mb">Zaloguj sie</a></li>
+                    <div class="regestration-mb">
+                        <form style="color: black;">
+                            <div class="login-container">
+                                <form class="login-form">
+                                    <h2>Login</h2>
+                                    <div class="input-group">
+                                        <input type="text" id="username" required>
+                                        <label for="username">Username</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="password" id="password" required>
+                                        <label for="password">Password</label>
+                                    </div>
+                                    <button type="submit">Sign In</button>
+                                </form>
+                            </div>
+                          </form>
+                    </div>
                     
                 </ul>
             </nav>
@@ -197,6 +215,24 @@ $(document).ready(function(){
                  
             });
 });
+$(document).ready(function(){
+    var a=0;
+    $( ".regestration-mb" ).hide();
+            $('#open-mb').click(function(){
+                if(a==0){
+                    $(".regestration-mb").fadeIn(500);
+                a=1;
+
+                }
+                else{
+                    $(".regestration-mb").fadeOut(500);
+
+                a=0;
+                }
+                 
+            });
+});
+
 
       </script>
 </body>
