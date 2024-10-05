@@ -415,11 +415,16 @@ button:hover {
     position: absolute;
     top:300px ;
     color: white;
+    width: 200px;
+    margin-left: 50px;
+    
     
 }
 .regestration-mb h2{
     color: white;
+    font-size: 15px;
 }
 .regestration-mb .input-group{
     color: white;
+    width: 100px;
 }

@@ -35,14 +35,14 @@
                                 <form class="login-form">
                                     <h2>Login</h2>
                                     <div class="input-group">
-                                        <input type="text" id="username" required>
+                                        <input type="text" id="username2" name="username">
                                         <label for="username">Username</label>
                                     </div>
                                     <div class="input-group">
-                                        <input type="password" id="password" required>
+                                        <input type="password" id="password2" name="password" required>
                                         <label for="password">Password</label>
                                     </div>
-                                    <button type="submit">Sign In</button>
+                                    <button type="submit" onclick="hashPassword()">Sign In</button>
                                 </form>
                             </div>
                           </form>
@@ -65,17 +65,17 @@
             <div class="regestration">
                 <form style="color: black;">
                     <div class="login-container">
-                        <form class="login-form">
+                        <form class="login-form"  action = "auth.php"  method="post">
                             <h2>Login</h2>
                             <div class="input-group">
-                                <input type="text" id="username" required>
+                                <input type="text" id="user" required name="user">
                                 <label for="username">Username</label>
                             </div>
                             <div class="input-group">
-                                <input type="password" id="password" required>
+                                <input type="password" id="pass" required name="pass">
                                 <label for="password">Password</label>
                             </div>
-                            <button type="submit">Sign In</button>
+                            <button type="submit" >Sign In</button>
                         </form>
                     </div>
                   </form>
@@ -167,9 +167,11 @@
           <p>© 2024 Wszelkie prawa zastrzeżone.</p>
         </div>
       </footer>
+    
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
       <script>
+        
         $(document).ready(function() {
             $('#mobile-nav').animate({ left: '150%' }, 200);
 });
