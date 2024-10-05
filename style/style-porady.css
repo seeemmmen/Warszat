@@ -7,10 +7,17 @@
 .image-container img{
     width: 300px;
     height: 200px;
+    border-radius:12px ;
+
 }
 .image-container div{
     width: 400px;
-    height: 400px;
+    height: 300px;
+    border: 3px lightskyblue solid;
+    padding: 5px;
+    border-radius: 12px;
+    margin-bottom: 50px;
+    text-align: center;
 }
 footer {
     background-color: #f0f0f0;
