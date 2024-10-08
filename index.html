@@ -75,6 +75,7 @@
                                 <input type="password" id="pass" required name="pass">
                                 <label for="password">Password</label>
                             </div>
+                            <label><input type="checkbox" class="password-checkbox">Show password</label>
                             <button type="submit" >Log In</button>
                             <button type="submit"id="sign-in" >Sign In</button>
 
@@ -95,6 +96,8 @@
                                 <input type="password" id="pass2" required name="pass">
                                 <label for="password">Password</label>
                             </div>
+                            <label><input type="checkbox" class="password-checkbox">Show password</label>
+
                             <button type="submit" id="log-in" >Log In</button>
                             <button type="submit"id="sign-in" >Sign In</button>
 
@@ -229,6 +232,20 @@
     });
  });       
            
+ $('body').on('click', '.password-checkbox', function(){
+	if ($(this).is(':checked')){
+		$('#pass').attr('type', 'text');
+	} else {
+		$('#pass').attr('type', 'password');
+	}
+}); 
+$('body').on('click', '.password-checkbox', function(){
+	if ($(this).is(':checked')){
+		$('#pass2').attr('type', 'text');
+	} else {
+		$('#pass2').attr('type', 'password');
+	}
+}); 
 $(document).ready(function(){
     var a=0;
     $( ".regestration" ).hide();
