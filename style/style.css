@@ -363,7 +363,9 @@ header{
     z-index: 10;
 
 
+    
 }
+
 
 .login-container {
     padding: 40px;
@@ -439,7 +441,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    width: 300px;
+    width: 250px;
     justify-content: center;
     align-items: center;
 }
