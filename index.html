@@ -32,7 +32,7 @@
                     <div class="regestration-mb">
                         <form style="color: black;">
                             <div class="login-container">
-                                <form class="login-form">
+                                <form class="login-form-mb">
                                     <h2>Login</h2>
                                     <div class="input-group">
                                         <input type="text" id="username2" name="username">
@@ -75,7 +75,24 @@
                                 <input type="password" id="pass" required name="pass">
                                 <label for="password">Password</label>
                             </div>
-                            <button type="submit" >Sign In</button>
+                            <button type="submit" >Log In</button>
+                            <button type="submit"id="sign-in" >Sign In</button>
+
+                        </form>
+                       
+                    </div>
+                    <div class="sign-container">
+                        <form class="sign-form"  action = "auth.php"  method="post">
+                            <h2>Sign</h2>
+                            <div class="input-group2">
+                                <input type="text" id="user" required name="user">
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="input-group2">
+                                <input type="password" id="pass" required name="pass">
+                                <label for="password">Password</label>
+                            </div>
+
                         </form>
                     </div>
                   </form>
@@ -191,7 +208,14 @@
     
 });
           
-        
+ $(document).ready(function(){
+    $(".sign-container").hide();
+
+    $("#sign-in").click(function(event) {
+        $(".sign-container").show();
+        $(".login-container").hide();
+    });
+ });       
            
 $(document).ready(function(){
     var a=0;

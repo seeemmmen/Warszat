@@ -299,6 +299,9 @@ header{
     .regestration{
         display: block;
     }
+    .sign-form{
+        display: none;
+    }
 
 }
 .menu-icon {
@@ -427,4 +430,30 @@ button:hover {
 .regestration-mb .input-group{
     color: white;
     width: 100px;
+}
+.sign-container{
+    padding: 40px;
+    border-radius: 10px;
+}
+.sign-form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-form h2 {
+    text-align: center;
+    color: #333;
+}
+.input-group2 input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border 0.3s ease;
 }
