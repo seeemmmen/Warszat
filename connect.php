@@ -1,11 +1,14 @@
-<?php      
-    $host = "localhost";  
-    $user = "root";  
-    $password = '';  
-    $db_name = "nodelogin";  
-      
-    $con = mysqli_connect($host, $user, $password, $db_name);  
-    if(mysqli_connect_errno()) {  
-        die("Failed to connect with MySQL: ". mysqli_connect_error());  
-    }  
-?>  
+<?php
+    $host = "localhost";
+    $username = "localhost";
+    $password = "";
+    $database = "users";
+
+    // Create DB Connection
+    $conn = mysqli_connect($host, $username, $password, $database);
+
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+?>
