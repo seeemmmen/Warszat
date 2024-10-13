@@ -5,6 +5,7 @@
     max-width: 1300px;
     margin: 0 auto;
     gap: 20px;
+    justify-content: center;
 }
 .image-container img{
     width: 300px;
@@ -15,13 +16,14 @@
 .image-container div{
     width: 400px;
     height: 300px;
-    border: 3px lightskyblue solid;
+    border: 3px #87cefa solid;
     padding: 5px;
     border-radius: 12px;
     margin-bottom: 50px;
     text-align: center;
     margin-top: 30px;
 }
+
 footer {
     background-color: #f0f0f0;
     color: #000000;
@@ -167,3 +169,12 @@ footer {
     color: white;
   }
   
+  @media (min-width: 319px) and (max-width: 480px){
+    .image-container{
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    header nav{
+      overflow: visible;
+    }
+  }
