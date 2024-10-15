@@ -190,4 +190,10 @@ button :hover{
   header nav{
     overflow: visible;
   }
+  #carouselExampleIndicators {
+    width: 320px;
+  }
+  .carousel-inner{
+    height: 200px;
+  }
 }
