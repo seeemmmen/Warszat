@@ -2,9 +2,10 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    max-width: 1300px;
+    /*max-width: 1600px;*/
     margin: 0 auto;
     gap: 20px;
+    justify-content: center;
 }
 .image-container img{
     width: 300px;
@@ -167,8 +168,26 @@ footer {
     color: white;
   }
 .button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
+  text-align: center; 
+  height: 100px; 
+}
+button{
+  vertical-align: middle;
+  padding: 10px 20px;
+}
+button a{
+  text-decoration: none;
+  color: black;
+}
+button :hover{
+  color: white;
+}
+@media (min-width: 319px) and (max-width: 480px){
+  .image-container{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  header nav{
+    overflow: visible;
+  }
 }
