@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    max-width: 1300px;
+    /*max-width: 1600px;*/
     margin: 0 auto;
     gap: 20px;
     justify-content: center;
@@ -14,16 +14,15 @@
 
 }
 .image-container div{
-    width: 400px;
-    height: 300px;
-    border: 3px #87cefa solid;
+    width: 500px;
+    height: 400px;
+    border: 3px lightskyblue solid;
     padding: 5px;
     border-radius: 12px;
     margin-bottom: 50px;
     text-align: center;
     margin-top: 30px;
 }
-
 footer {
     background-color: #f0f0f0;
     color: #000000;
@@ -168,13 +167,33 @@ footer {
     font-weight: lighter;
     color: white;
   }
-  
-  @media (min-width: 319px) and (max-width: 480px){
-    .image-container{
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-    header nav{
-      overflow: visible;
-    }
+.button{
+  text-align: center; 
+  height: 100px; 
+}
+button{
+  vertical-align: middle;
+  padding: 10px 20px;
+}
+button a{
+  text-decoration: none;
+  color: black;
+}
+button :hover{
+  color: white;
+}
+@media (min-width: 319px) and (max-width: 480px){
+  .image-container{
+    margin-left: 10px;
+    margin-right: 10px;
   }
+  header nav{
+    overflow: visible;
+  }
+  #carouselExampleIndicators {
+    width: 320px;
+  }
+  .carousel-inner{
+    height: 200px;
+  }
+}
