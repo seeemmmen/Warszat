@@ -196,8 +196,9 @@ button :hover{
   #carouselExampleIndicators {
     width: 320px;
   }
-  .carousel-inner{
-    height: 200px;
+
+  #carousel-image{
+    height: 250px;
   }
   nav ul{
     text-align: right;
@@ -220,3 +221,7 @@ button :hover{
   z-index: 10;
   display: inline-block;
 }
+.carousel-image {
+  height: 500px; 
+}
+
