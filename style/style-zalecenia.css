@@ -189,12 +189,26 @@ button :hover{
   }
   header nav{
     overflow: visible;
+    display: flex;
+    margin-top: 10px;
+    flex-wrap: inherit;
   }
   #carouselExampleIndicators {
     width: 320px;
   }
   .carousel-inner{
     height: 200px;
+  }
+  nav ul{
+    text-align: right;
+    padding: 0;
+    display: flex;
+    font-size: 13px;
+    align-items: center;
+    margin-left: 12px;
+
+
+
   }
 }
 #logo{

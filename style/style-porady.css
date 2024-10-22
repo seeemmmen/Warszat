@@ -16,7 +16,8 @@
 .image-container div{
     width: 400px;
     height: 300px;
-    border: 3px #87cefa solid;
+    border-bottom: 3px  #87cefa solid;
+   
     padding: 5px;
     border-radius: 12px;
     margin-bottom: 50px;
@@ -89,6 +90,7 @@ footer {
     width: 100%;
     height: 35px;
     overflow: hidden;
+
   }
   
   nav ul {
@@ -176,8 +178,29 @@ footer {
     }
     header nav{
       overflow: visible;
+      display: flex;
+      margin-top: 10px;
+      flex-wrap: inherit;
+    }
+    #fullscreen-image {
+      width: 325px; /* Еще меньше для маленьких экранов */
+  }
+      nav ul{
+        text-align: right;
+        padding: 0;
+        display: flex;
+        font-size: 13px;
+        align-items: center;
+        margin-left: 12px;
+
+      }
+      #fullscreen-text {
+        font-size: 15px; /* Еще меньше для маленьких экранов */
+        width: 320px;
     }
   }
+ 
+
   #logo{
     font-size: 25px;
     font-family: "Inria Sans", sans-serif;
@@ -189,33 +212,33 @@ footer {
     
   }
 
-  #d1{
-    width: 100%;
-    height: 100%;
-    background-color: #5e5e5ea9;
+  #fullscreen-container {
     position: fixed;
     top: 0;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-  }
-  #d1 img{
-    width: 300px;
-    height: 200px;
-  }
-  #d2{
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: #5e5e5ea9;
-    position: fixed;
-    top: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
-  }
-  #d2 img{
-    width: 300px;
-    height: 200px;
-  }
+}
+
+#fullscreen-content {
+    text-align: center;
+    width: 500px;
+}
+
+.fullscreen-image {
+   width: 500px;
+}
+
+.fullscreen-text {
+    color: white;
+    margin-top: 10px;
+    font-size: 18px;
+    width: 500px;
+}
+
+ 

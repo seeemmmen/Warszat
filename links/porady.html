@@ -14,10 +14,11 @@
     <header style="display: inline;">
         <nav>
             
-            <p id="logo"><span style="color: blue;">R</span><span style="color: white;">epai</span><span style="color: orange;">r</span></p>
             <div class="nav-bg"></div>
+            <p id="logo"><span style="color: blue;">R</span><span style="color: white;">epai</span><span style="color: orange;">r</span></p>
+
             <ul>
-              <li><a href="../index.html">Strona główna</a></li>
+              <li><a href="../index.html">Głowna</a></li>
               <li><a href="../links/zalecenia.html">Zlecenia</a></li>
               <li><a href="../links/firmy.html">Firmy</a></li>
               <li><a href="./regalumin.html">Regulamin</a></li>
@@ -29,7 +30,7 @@
     </header>
     <div class="image-container">
         <div>
-            <img src="../img/1.jpg" >
+            <img src="../img/1.jpg" class="thumbnail">
             <h1>
                 Regularne przeglądy
             </h1>
@@ -38,7 +39,7 @@
             </p>
         </div>
         <div>
-            <img src="..\img\2.jpg">
+            <img src="../img/2.jpg" class="thumbnail">
             <h1>
                 Wymiana opon
             </h1>
@@ -47,7 +48,7 @@
             </p>
         </div>
         <div>
-            <img src="../img/3.jpg" id="d3">
+            <img src="../img/3.jpg" class="thumbnail">
             <h1>
                 Dbaj o akumulator
             </h1>
@@ -56,7 +57,7 @@
             </p>
         </div>
         <div>
-            <img src="../img/4.jpg" id="d4">
+            <img src="../img/4.jpg" class="thumbnail">
             <h1>
                 Czystość pojazdu
             </h1>
@@ -65,7 +66,7 @@
             </p>
         </div>
         <div>
-            <img src="../img/5.jpg" id="d5">
+            <img src="../img/5.jpg" class="thumbnail">
             <h1>
                 Płynna jazda
             </h1>
@@ -74,7 +75,7 @@
             </p>
         </div>
         <div>
-            <img src="../img/6.jpg" id="d6">
+            <img src="../img/6.jpg" class="thumbnail" width="300px" >
             <h1>
                 Parkowanie w cieniu
             </h1>
@@ -82,13 +83,15 @@
                 zabezpieczaj lakier przed słońcem.
             </p>
         </div>
+
     </div>
-    <div id="d1">
-        <img src="../img/1.jpg" >
+    <div id="fullscreen-container" style="display:none;">
+        <div id="fullscreen-content">
+            <img id="fullscreen-image" src="" alt="Full Image" class="fullscreen-image">
+            <div id="fullscreen-text" class="fullscreen-text"></div>
+        </div>
     </div>
-    <div id="d2">
-        <img src="../img/2.jpg" >
-    </div>
+   
     <footer>
         <div class="footer-container">
           <div class="footer-logo">
@@ -118,6 +121,46 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
       <script>
+                $(document).ready(function() {
+            $('.thumbnail').on('click', function() {
+                var imgSrc = $(this).attr('src');
+                var heading = $(this).siblings('h1').text();
+                var description = $(this).siblings('p').text();
+                if("../img/1.jpg"==imgSrc){
+                    $('#fullscreen-text').html('<h1>' + heading + '</h1><p>' + "Regularne przeglądy techniczne są kluczowe dla utrzymania pojazdu w dobrym stanie i zapewnienia bezpieczeństwa na drodze. Obejmuje to sprawdzanie i wymianę olejów silnikowych, filtrów powietrza, paliwa i kabinowych, a także monitorowanie stanu innych płynów eksploatacyjnych, takich jak płyn hamulcowy, płyn chłodniczy oraz płyn do spryskiwaczy.Regularne kontrole pozwalają na wczesne wykrycie ewentualnych problemów mechanicznych, takich jak zużycie pasków napędowych, tarcz hamulcowych czy stan układu wydechowego. Dbanie o sprawność techniczną pojazdu nie tylko zapobiega kosztownym naprawom w przyszłości, ale także poprawia efektywność paliwową, co pozwala na oszczędności podczas codziennej eksploatacji samochodu.Regularne przeglądy to także dbanie o układ zawieszenia i amortyzatory, które mają kluczowy wpływ na komfort jazdy oraz bezpieczeństwo w trudnych warunkach drogowych." + '</p>');
+
+                }
+                if("../img/2.jpg"==imgSrc){
+                    $('#fullscreen-text').html('<h1>' + heading + '</h1><p>' + "Wymiana opon to jedna z podstawowych czynności, która bezpośrednio wpływa na bezpieczeństwo i komfort jazdy. Opony są jedynym elementem, który łączy pojazd z nawierzchnią, dlatego ich stan techniczny jest niezwykle istotny. Regularna kontrola ciśnienia w oponach oraz zużycia bieżnika powinna być priorytetem każdego kierowcy.Opony należy wymieniać sezonowo – opony letnie i zimowe są dostosowane do specyficznych warunków atmosferycznych. Opony zimowe zapewniają lepszą przyczepność na śliskiej i zaśnieżonej nawierzchni dzięki głębszemu bieżnikowi i specjalnej mieszance gumy, która zachowuje elastyczność w niskich temperaturach. Z kolei opony letnie lepiej sprawdzają się w wysokich temperaturach, zapewniając krótszą drogę hamowania na suchym i mokrym asfalcie." + '</p>');
+
+                }
+                if("../img/3.jpg"==imgSrc){
+                    $('#fullscreen-text').html('<h1>' + heading + '</h1><p>' + "Akumulator jest jednym z kluczowych elementów samochodu, który odpowiada za dostarczanie energii elektrycznej do rozruchu silnika oraz zasilanie różnych systemów elektronicznych w pojeździe. Odpowiednia dbałość o akumulator zapewnia nie tylko niezawodność w codziennym użytkowaniu, ale także przedłuża jego żywotność, zwłaszcza w trudnych warunkach pogodowych, takich jak zima." + '</p>');
+
+                }
+                if("../img/4.jpg"==imgSrc){
+                    $('#fullscreen-text').html('<h1>' + heading + '</h1><p>' + "Regularne dbanie o czystość pojazdu to nie tylko kwestia estetyki, ale również ważny element konserwacji samochodu, który może znacząco wpłynąć na jego długowieczność i wartość rynkową. Czyszczenie samochodu zarówno z zewnątrz, jak i wewnątrz pomaga zapobiegać korozji, uszkodzeniom lakieru oraz chroni wnętrze przed nadmiernym zużyciem. Do mycia samochodu najlepiej używać specjalistycznych środków, które nie tylko usuwają brud, ale również chronią lakier przed szkodliwym działaniem promieni UV i zanieczyszczeń środowiskowych. Ważne jest także korzystanie z miękkich gąbek i ściereczek z mikrofibry, które minimalizują ryzyko porysowania lakieru. Dobrym pomysłem jest także regularne woskowanie samochodu – wosk tworzy warstwę ochronną na powierzchni lakieru, dzięki czemu staje się on mniej podatny na zabrudzenia i uszkodzenia." + '</p>');
+
+                }
+                if("../img/5.jpg"==imgSrc){
+                    $('#fullscreen-text').html('<h1>' + heading + '</h1><p>' + "Płynna jazda to jeden z najważniejszych aspektów bezpiecznej, ekonomicznej i ekologicznej jazdy samochodem. Unikanie gwałtownych przyspieszeń i hamowań oraz utrzymywanie stałej prędkości nie tylko wpływa na oszczędność paliwa, ale również redukuje zużycie podzespołów pojazdu, takich jak hamulce, opony czy skrzynia biegów. Co więcej, płynna jazda zmniejsza stres kierowcy oraz wpływa korzystnie na komfort pasażerów.Zmniejszenie zużycia paliwa to nie tylko korzyść ekonomiczna, ale także ekologiczna – płynna jazda pomaga ograniczyć emisję spalin, co jest szczególnie ważne w miastach, gdzie zanieczyszczenie powietrza jest dużym problemem." + '</p>');
+
+                }
+                if("../img/6.jpg"==imgSrc){
+                    $('#fullscreen-text').html('<h1>' + heading + '</h1><p>' + "Parkowanie w cieniu to prosty, ale skuteczny sposób na ochronę samochodu przed szkodliwymi skutkami działania promieni słonecznych. Wpływ słońca na pojazd może być bardziej destrukcyjny, niż się wydaje na pierwszy rzut oka. Wysokie temperatury i promieniowanie UV mogą negatywnie wpływać na lakier, wnętrze pojazdu, a nawet mechanikę. Dlatego, jeśli to możliwe, warto starać się parkować w miejscach zacienionych, aby zminimalizować te niekorzystne efekty.Dodatkowo, warto raz na jakiś czas nałożyć warstwę wosku ochronnego na lakier, co dodatkowo zabezpieczy go przed promieniowaniem UV i ułatwi usuwanie zabrudzeń. Wosk tworzy barierę ochronną, dzięki której lakier staje się mniej podatny na działanie czynników atmosferycznych, w tym promieniowania słonecznego." + '</p>');
+
+                }
+                $('#fullscreen-image').attr('src', imgSrc);
+
+                $('#fullscreen-container').fadeIn();
+            });
+
+            $('#fullscreen-container').on('click', function(event) {
+                if (!$(event.target).closest('#fullscreen-content').length) {
+                    $('#fullscreen-container').fadeOut();
+                }
+            });
+        });
 
       </script>
 </body>
