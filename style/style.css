@@ -368,17 +368,17 @@ header{
 
 
 .login-container {
-    padding: 40px;
+    padding: 60px;
     border-radius: 10px;
 }
 
 .login-form {
     display: flex;
     flex-direction: column;
-    gap: 40px;
     width: 300px;
     justify-content: center;
     align-items: center;
+    padding: 10px;
 }
 
 .login-form h2 {
@@ -434,7 +434,7 @@ button:hover {
     width: 100px;
 }
 .sign-container{
-    padding: 40px;
+    padding: 60px;
     border-radius: 10px;
 }
 .sign-form {
@@ -444,10 +444,12 @@ button:hover {
     width: 250px;
     justify-content: center;
     align-items: center;
+    color: black;
 }
-
+.sign-form label{
+    margin-top: 10px;
+}
 .sign-form h2 {
-    text-align: center;
     color: #333;
 }
 .input-group2 input {

@@ -45,7 +45,7 @@
                                         <input type="password" id="password2" name="password" required>
                                         <label >Password</label>
                                     </div>
-                                    <button type="submit" onclick="hashPassword()">Sign In</button>
+                                    <button type="submit" onclick="">Sign In</button>
                                 </form>
                             </div>
                           </form>
@@ -71,12 +71,14 @@
                         <form class="login-form"  action = ""  method="post">
                             <h2>Login</h2>
                             <div class="input-group">
-                                <input type="text" id="user" required name="user">
                                 <label >Username</label>
+
+                                <input type="text" id="user" required name="user">
                             </div>
                             <div class="input-group">
-                                <input type="password" id="pass" required name="pass">
                                 <label >Password</label>
+
+                                <input type="password" id="pass" required name="pass">
                             </div>
                             
 
@@ -90,34 +92,37 @@
                     </div>
                     
                   </form>
-                  <form style="color: black;">
-                    <div class="sign-container">
-                        <form class="sign-form "  action="http://localhost:3000/register"  method="POST" id="registration-form">
-                            <h2>Sign-in</h2>
-                            <div class="input-group">
-                                <input type="text" id="user2"  name="username">
-                                <label >Username</label>
-                            </div>
-                            <div class="input-group">
-                                <input type="text" id="email2"  name="email">
-                                <label >Email</label>
-                            </div>
-                            <div class="input-group">
-                                <input type="password" id="pass2"  name="password">
-                                <label >Password</label>
-                            </div>
-                      
-
-                            <label><input type="checkbox" class="password-checkbox">Show password</label>
-
-                            <button type="submit"  >Sign In</button>
-                            <a  id="log-in" style="color: black;margin-top: 20px;">Log In</a>
-
-
-                        </form>
-                    </div>
+                  <form class="sign-form "  action=""  method="POST" id="registration-form">
                     
-                  </form>
+                    <div class="sign-container">
+                        <h2>Sign-in</h2>
+                    <div class="input-group">
+                        <label >Username</label>
+
+                        <input type="text" id="username"  name="username">
+                    </div>
+                    <div class="input-group">
+                        <label >Email</label>
+
+                        <input type="text" id="email"  name="email">
+                    </div>
+                    <div class="input-group">
+                        <label >Password</label>
+
+                        <input type="password" id="password"  name="password">
+                    </div>
+              
+
+                    <label><input type="checkbox" class="password-checkbox">Show password</label>
+
+                    <button type="submit"  >Sign In</button>
+                    <a  id="log-in" style="color: black;margin-top: 20px;">Log In</a>
+                    </div>
+
+                </form>
+                    
+                    
+                
             </div>
            
         </div>
@@ -205,9 +210,49 @@
         </div>
         <div class="footer-copyright">
           <p>© 2024 Wszelkie prawa zastrzeżone.</p>
+          <div id="responseMessage"></div> <!-- Добавьте этот элемент в нужное место в вашем HTML -->
+
         </div>
       </footer>
-    
+      <script>
+        console.log("Скрипт загружен");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registration-form");
+  if (!form) {
+    console.error("Форма не найдена!");
+    return;
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value;
+
+    try {
+      const response = await fetch("/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password ,email}),
+      });
+
+      const result = await response.json();
+      document.getElementById("responseMessage").textContent = result.message;
+      console.log(password);
+      form.reset(); 
+    } catch (error) {
+      console.error("Ошибка:", error);
+      document.getElementById("responseMessage").textContent = "Błąd";
+    }
+  });
+});
+
+  
+      </script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
       <script src="script/jquary.js"></script>
 </body>

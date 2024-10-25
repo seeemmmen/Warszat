@@ -1,56 +1,45 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+// server.js
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const bcrypt = require("bcrypt");
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/registration')
-    .then(() => {
-        console.log('Connected to MongoDB');
-    })
-    .catch((err) => {
-        console.error('Failed to connect to MongoDB', err);
-    });
-
-// Define User schema
-const userSchema = new mongoose.Schema({
-    username: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
-});
-
-// Create User model
-const User = mongoose.model('user4', userSchema);
-
-// Initialize express app
 const app = express();
-
-// Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Registration route
-app.post('/register', async (req, res) => {
-    const { username, email, password } = req.body;
-
-    // Create a new user
-    const newUser = new User({ username, email, password });
-
-    try {
-        await newUser.save();
-        res.status(201).send('User registered successfully');
-    } catch (err) {
-        res.status(400).send('Error registering user');
-    }
-});
-// Serve static files if needed
-app.use(express.static('public'));
-
-// Define a route for the root URL
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html'); // Make sure the path to index.html is correct
-});
-// Start the server
 const PORT = 3000;
+
+mongoose.connect("mongodb+srv://seeemmmen:Parol2017@web.omhac.mongodb.net/?retryWrites=true&w=majority&appName=Web");
+
+// Определение схемы пользователя
+const userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+  email: String
+});
+
+const User = mongoose.model("User", userSchema);
+
+// Middleware для обработки JSON
+app.use(bodyParser.json());
+// Установка корневой директории для статических файлов
+app.use(express.static(__dirname));
+
+// Маршрут для регистрации
+app.post("/register", async (req, res) => {
+  const { username, password ,email} = req.body;
+  if (!username || !password || !email  ) {
+    return res.status(400).json({ message: "Wpisz swoją nazwę użytkownika i hasło oraz adres e-mail" });
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ username, password: hashedPassword ,email});
+    await newUser.save();
+    res.status(201).json({ message: "Użytkownik zarejestrował się pomyślnie" });
+  } catch (error) {
+    res.status(500).json({ message: "Błąd serwera" });
+  }
+});
+
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Сервер запущен на http://localhost:${PORT}`);
 });

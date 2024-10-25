@@ -39,9 +39,9 @@ $('#pass').attr('type', 'password');
 }); 
 $('body').on('click', '.password-checkbox', function(){
 if ($(this).is(':checked')){
-$('#pass2').attr('type', 'text');
+$('#password').attr('type', 'text');
 } else {
-$('#pass2').attr('type', 'password');
+$('#password').attr('type', 'password');
 }
 }); 
 $(document).ready(function(){
@@ -83,29 +83,5 @@ $( ".regestration-mb" ).hide();
         a=0;
         }
          
-    });
-});
-$(document).ready(function() {
-    $('#registration-form').on('submit', function(e) {
-        e.preventDefault(); // Prevent the form from submitting in the traditional way
-
-        $.ajax({
-            url: 'register.php',
-            type: 'POST',
-            data: $(this).serialize(),
-            dataType: 'json',
-            success: function(response) {
-                // Display success or error message
-                if (response.status === 'success') {
-                    $('#registration-message').html('<p style="color: green;">' + response.message + '</p>');
-                    $('#registration-form')[0].reset(); // Reset form fields
-                } else {
-                    $('#registration-message').html('<p style="color: red;">' + response.message + '</p>');
-                }
-            },
-            error: function() {
-                $('#registration-message').html('<p style="color: red;">An error occurred while processing the request.</p>');
-            }
-        });
     });
 });
