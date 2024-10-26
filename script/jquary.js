@@ -21,20 +21,20 @@ $(document).ready(function(){
 $(".sign-container").hide();
 
 $("#sign-in").click(function(event) {
-$(".sign-container").show();
-$(".login-container").hide();
+$(".sign-container").show(200);
+$(".login-container").hide(200);
 });
 $("#log-in").click(function(event) {
-$(".login-container").show();
-$(".sign-container").hide();
+$(".login-container").show(200);
+$(".sign-container").hide(200);
 });
 });       
    
 $('body').on('click', '.password-checkbox', function(){
 if ($(this).is(':checked')){
-$('#pass').attr('type', 'text');
+$("#password_log").attr('type', 'text');
 } else {
-$('#pass').attr('type', 'password');
+$('#password_log').attr('type', 'password');
 }
 }); 
 $('body').on('click', '.password-checkbox', function(){
@@ -86,6 +86,8 @@ $( ".regestration-mb" ).hide();
     });
 });
 $(document).ready(function(){
+        
+      
         $(".auth").hide();
 
         $('#sign-in-bt').click(function(){
@@ -98,6 +100,7 @@ $(document).ready(function(){
             $("#loginMessage").html(" ");
             $("#responseMessage").html(" ");
         });
+        
         
 });
     

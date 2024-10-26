@@ -37,7 +37,7 @@ app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   
   if (!username || !password) {
-    return res.status(400).json({ message: "Введите имя пользователя и пароль" });
+    return res.status(400).json({ message: "Wpisz swoją nazwę użytkownika i hasło" });
   }
 
   try {
@@ -46,15 +46,15 @@ app.post("/login", async (req, res) => {
       const isMatch = await bcrypt.compare(password, user.password);
       console.log(isMatch);
       if (isMatch) {
-        return res.status(200).json({ message: "Успешный вход", token: "ваш_токен" });
+        return res.status(200).json({ message: "Pomyślne logowanie", token: "ваш_токен" });
       } else {
-        return res.status(401).json({ message: "Неправильный пароль" });
+        return res.status(401).json({ message: "Nieprawidłowe hasło" });
       }
     } else {
-      return res.status(401).json({ message: "Пользователь не найден" });
+      return res.status(401).json({ message: "Nie znaleziono użytkownika" });
     }
   } catch (error) {
-    return res.status(500).json({ message: "Ошибка сервера" });
+    return res.status(500).json({ message: "Błąd serwera" });
   }
 });
 

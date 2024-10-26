@@ -380,6 +380,7 @@ header{
     align-items: center;
     padding: 10px;
     color: black;
+    
 }
 
 .login-form h2 {
@@ -469,5 +470,10 @@ button:hover {
     position: absolute;
     right: 0;
     margin-top: 30px;
+    text-align: center;
 
+}
+.auth p{
+    margin-top: 40px;
+    display: block;
 }

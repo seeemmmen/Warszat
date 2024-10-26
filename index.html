@@ -66,7 +66,7 @@
             </ul>
            <div class="auth" style="color: black;">
             <p id="loginMessage"></p>
-            <div id="responseMessage"></div> <!-- Добавьте этот элемент в нужное место в вашем HTML -->
+            <p id="responseMessage"></p> 
            </div>
             <div class="regestration" style="color: black;">
                
@@ -272,14 +272,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const data = await response.json();
         if (response.ok) {
-          document.getElementById("loginMessage").textContent = "Успешный вход!"+ username;
+          document.getElementById("loginMessage").textContent = "Logowanie udane się! "+ username;
           localStorage.setItem("token", data.token); // Сохраняем токен
         } else {
           document.getElementById("loginMessage").textContent = data.message;
         }
       } catch (error) {
         console.error("Ошибка:", error);
-        document.getElementById("loginMessage").textContent = "Ошибка при входе";
+        document.getElementById("loginMessage").textContent = "Błąd logowania";
       }
     });
   });
