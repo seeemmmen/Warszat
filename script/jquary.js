@@ -85,3 +85,19 @@ $( ".regestration-mb" ).hide();
          
     });
 });
+$(document).ready(function(){
+        $(".auth").hide();
+
+        $('#sign-in-bt').click(function(){
+            $(".auth").fadeIn('200').delay('5000').fadeOut('200');
+            $("#loginMessage").html(" ");
+            $("#responseMessage").html(" ");
+        });
+        $('#log-in-bt').click(function(){
+            $(".auth").fadeIn('200').delay('5000').fadeOut('200');
+            $("#loginMessage").html(" ");
+            $("#responseMessage").html(" ");
+        });
+        
+});
+    

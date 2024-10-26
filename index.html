@@ -64,37 +64,42 @@
                 
 
             </ul>
-           
-            <div class="regestration">
-                <form style="color: black;">
+           <div class="auth" style="color: black;">
+            <p id="loginMessage"></p>
+            <div id="responseMessage"></div> <!-- Добавьте этот элемент в нужное место в вашем HTML -->
+           </div>
+            <div class="regestration" style="color: black;">
+               
+
+                <form class="login-form"  action = ""  method="post" id="login-form">
+
                     <div class="login-container">
-                        <form class="login-form"  action = ""  method="post">
-                            <h2>Login</h2>
-                            <div class="input-group">
-                                <label >Username</label>
 
-                                <input type="text" id="user" required name="user">
-                            </div>
-                            <div class="input-group">
-                                <label >Password</label>
-
-                                <input type="password" id="pass" required name="pass">
-                            </div>
-                            
-
-                            <label><input type="checkbox" class="password-checkbox">Show password</label>
-                            <button type="submit" >Log In</button>
-                            <a href="#" id="sign-in" style="color: black;margin-top: 20px;">Sign In</a>
-
-
-                        </form>
-                       
+                        <h2>Login</h2>
+                        <div class="input-group">
+                            <label >Username</label>
+    
+                            <input type="text" id="username_log" required name="username_log">
+                        </div>
+                        <div class="input-group">
+                            <label >Password</label>
+    
+                            <input type="password" id="password_log" required name="password_log">
+                        </div>
+                        
+    
+                        <label><input type="checkbox" class="password-checkbox">Show password</label>
+                        <button type="submit" id="log-in-bt" >Log In</button>
+                        <a href="#" id="sign-in" style="color: black;margin-top: 20px;">Sign In</a>
                     </div>
                     
-                  </form>
+                </form>
+                  
+                  
                   <form class="sign-form "  action=""  method="POST" id="registration-form">
                     
                     <div class="sign-container">
+
                         <h2>Sign-in</h2>
                     <div class="input-group">
                         <label >Username</label>
@@ -115,7 +120,7 @@
 
                     <label><input type="checkbox" class="password-checkbox">Show password</label>
 
-                    <button type="submit"  >Sign In</button>
+                    <button type="submit" id="sign-in-bt"  >Sign In</button>
                     <a  id="log-in" style="color: black;margin-top: 20px;">Log In</a>
                     </div>
 
@@ -210,7 +215,6 @@
         </div>
         <div class="footer-copyright">
           <p>© 2024 Wszelkie prawa zastrzeżone.</p>
-          <div id="responseMessage"></div> <!-- Добавьте этот элемент в нужное место в вашем HTML -->
 
         </div>
       </footer>
@@ -241,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const result = await response.json();
-      document.getElementById("responseMessage").textContent = result.message;
+      document.getElementById("responseMessage").textContent = result.message+" "+ username;
       console.log(password);
       form.reset(); 
     } catch (error) {
@@ -250,8 +254,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("login-form").addEventListener("submit", async function (event) {
+      event.preventDefault();
 
-  
+      const username = document.getElementById("username_log").value;
+      const password = document.getElementById("password_log").value;
+
+      try {
+        const response = await fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          document.getElementById("loginMessage").textContent = "Успешный вход!"+ username;
+          localStorage.setItem("token", data.token); // Сохраняем токен
+        } else {
+          document.getElementById("loginMessage").textContent = data.message;
+        }
+      } catch (error) {
+        console.error("Ошибка:", error);
+        document.getElementById("loginMessage").textContent = "Ошибка при входе";
+      }
+    });
+  });
+
+   
       </script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
       <script src="script/jquary.js"></script>
