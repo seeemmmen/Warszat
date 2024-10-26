@@ -21,7 +21,12 @@ mongoose.connect("mongodb+srv://seeemmmen:Parol2017@web.omhac.mongodb.net/?retry
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
-  email: String
+  email: String,
+  name: String,         // Имя
+  lastname: String,     // Фамилия
+  gender: String,       // Пол
+  address: String,      // Адрес
+  bio: String           // Биография
 });
 
 const User = mongoose.model("User", userSchema);
@@ -46,7 +51,8 @@ app.post("/login", async (req, res) => {
       const isMatch = await bcrypt.compare(password, user.password);
       console.log(isMatch);
       if (isMatch) {
-        return res.status(200).json({ message: "Pomyślne logowanie", token: "ваш_токен" });
+        const token = jwt.sign({ username: user.username }, SECRET_KEY, { expiresIn: "1h" });
+        return res.status(200).json({ message: "Pomyślne logowanie", token });
       } else {
         return res.status(401).json({ message: "Nieprawidłowe hasło" });
       }
@@ -58,7 +64,18 @@ app.post("/login", async (req, res) => {
   }
 });
 
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
+  if (!token) return res.sendStatus(401);
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+      if (err) return res.sendStatus(403);
+      req.user = user; 
+      next();
+  });
+};
 // Маршрут для регистрации
 app.post("/register", async (req, res) => {
   const { username, password ,email} = req.body;
@@ -101,6 +118,32 @@ app.post("/register", async (req, res) => {
     res.status(500).json({ message: "Błąd serwera" });
   }
 });
+
+
+
+app.post("/about-me", authenticateToken, async (req, res) => {
+  const { name, lastname, gender, address, bio } = req.body;
+
+  try {
+      const user = await User.findOne({ username: req.user.username });
+      if (!user) {
+          return res.status(404).json({ message: "Пользователь не найден" });
+      }
+      
+      user.name = name;
+      user.lastname = lastname;
+      user.gender = gender;
+      user.address = address;
+      user.bio = bio;
+      await user.save();
+
+      res.status(200).json({ message: "Информация обновлена успешно" });
+  } catch (error) {
+      res.status(500).json({ message: "Ошибка сервера" });
+  }
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);

@@ -14,24 +14,23 @@
 <body>
     <p id="logo"><span style="color: blue;">R</span>epai<span style="color: orange;">r</span></p>
 
-    <form class="container mt-4">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-    
+    <form class="container mt-4" id="userInfoForm" method="post">
+        
         <div class="input-group mb-3">
             <span class="input-group-text">First and last name</span>
-            <input type="text" aria-label="First name" class="form-control">
-            <input type="text" aria-label="Last name" class="form-control">
+            <input type="text" aria-label="First name" class="form-control" id="firstname">
+            <input type="text" aria-label="Last name" class="form-control" id="lastname">
         </div>
-    
+        <div class="form-group">
+          <label for="inputAddress">Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
         <div class="mb-3">
             <label for="genderSelect" class="form-label">Gender</label>
             <select class="form-select" id="genderSelect" aria-label="Gender select">
                 <option selected>Select Gender</option>
-                <option value="1">Men</option>
-                <option value="2">Women</option>
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
             </select>
         </div>
     
@@ -39,8 +38,12 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div>
-    
-        
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Write about you</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Save</button>
+
     </form>
     
     <div class="card mt-5" style="width: 18rem;">
@@ -76,10 +79,44 @@
         </div>
       </footer>
       <script>
-        ipt>
     function goBack() {
        window.history.back();
     }
+    document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("userInfoForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Извлечение значений из формы и кодирование
+        const data = {
+            name: encodeURIComponent(document.getElementById("firstname").value),
+            lastname: encodeURIComponent(document.getElementById("lastname").value),
+            gender: encodeURIComponent(document.getElementById("genderSelect").value),
+            address: encodeURIComponent(document.getElementById("inputAddress").value),
+            bio: encodeURIComponent(document.getElementById("exampleFormControlTextarea1").value)
+        };
+
+        // Получение токена
+        const token = localStorage.getItem("token");
+
+        // Отправка данных на сервер
+        fetch("/about-me", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                console.log(data.message);
+            }
+        })
+        .catch(error => console.log("Ошибка:", error));
+    });
+});
+
       </script>
     
 </body>
