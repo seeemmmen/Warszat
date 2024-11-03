@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const nodemailer = require('nodemailer');
+const cookieParser = require('cookie-parser'); // Добавьте cookie-parser для работы с cookies
 
 const app = express();
 const PORT = 3000;
@@ -38,9 +39,11 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 // Маршрут для логина
 // server.js
+app.use(cookieParser()); // Для работы с cookies
+
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  
+
   if (!username || !password) {
     return res.status(400).json({ message: "Wpisz swoją nazwę użytkownika i hasło" });
   }
@@ -49,10 +52,17 @@ app.post("/login", async (req, res) => {
     const user = await User.findOne({ username });
     if (user) {
       const isMatch = await bcrypt.compare(password, user.password);
-      console.log(isMatch);
       if (isMatch) {
-        const token = jwt.sign({ username: user.username }, SECRET_KEY, { expiresIn: "1h" });
-        return res.status(200).json({ message: "Pomyślne logowanie", token });
+        const token = jwt.sign({ username: user.username }, SECRET_KEY); // Устанавливаем срок действия на 7 дней
+
+        // Устанавливаем токен как httpOnly cookie
+        res.cookie("authToken", token, {
+          httpOnly: true,
+          secure: true, // Установите в true для HTTPS
+          maxAge: 7 * 24 * 60 * 60 * 1000 // 7 дней в миллисекундах
+        });
+
+        return res.status(200).json({ message: "Pomyślne logowanie" });
       } else {
         return res.status(401).json({ message: "Nieprawidłowe hasło" });
       }
@@ -64,18 +74,20 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// Middleware для проверки токена из cookies
 const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-
+  const token = req.cookies.authToken;
   if (!token) return res.sendStatus(401);
 
   jwt.verify(token, SECRET_KEY, (err, user) => {
-      if (err) return res.sendStatus(403);
-      req.user = user; 
-      next();
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
   });
 };
+
+// Добавьте это middleware для маршрутов, которые требуют авторизации
+app.use(authenticateToken);
 // Маршрут для регистрации
 app.post("/register", async (req, res) => {
   const { username, password ,email} = req.body;

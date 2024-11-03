@@ -220,7 +220,6 @@
       </footer>
       <script>
         console.log("Скрипт загружен");
-
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registration-form");
   if (!form) {
@@ -258,7 +257,6 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("login-form").addEventListener("submit", async function (event) {
       event.preventDefault();
-
       const username = document.getElementById("username_log").value;
       const password = document.getElementById("password_log").value;
 
@@ -277,7 +275,6 @@ document.addEventListener("DOMContentLoaded", function () {
           localStorage.setItem("token", data.token); // Сохраняем токен
           const token=localStorage.getItem("token");
           console.log(token);
-          form.reset(); 
 
         } else {
           document.getElementById("loginMessage").textContent = data.message;
