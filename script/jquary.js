@@ -108,4 +108,28 @@ $(document).ready(function(){
         
         
 });
+$(document).ready(function(){
+        
+      
+   //$("#tg").hide();
+    var ready=0;
+    $('#click').click(function(){
+        if(ready==0){
+            $("#tg").animate({
+                left: '-=200px'  
+            }, 500);
+            ready=1;
+        }
+      
+        else{
+            $("#tg").animate({
+                left: '+=200px'  
+            }, 500);
+            ready=0;
+        }
+    });
+   
     
+    
+});
+

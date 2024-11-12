@@ -475,3 +475,23 @@ button:hover {
     margin-top: 40px;
     display: block;
 }
+
+
+
+#arrow{
+    
+    position: fixed;
+    right: 0;
+    top: 400px;
+
+}
+#arrow img{
+    width: 50px;
+}
+
+
+#arrow #tg{
+    position: absolute;
+    left:100px;
+    border-radius: 5px;
+}
