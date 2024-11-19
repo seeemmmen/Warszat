@@ -11,6 +11,7 @@
 
 </head>
 <body>
+    <!--header(nadgłowek strony)-->
     <header style="display: inline;">
         <nav>
             
@@ -18,16 +19,19 @@
             <p id="logo"><span style="color: blue;">R</span><span style="color: white;">epai</span><span style="color: orange;">r</span></p>
 
             <ul>
+                 <!--hyperłącze do innych stron witryny-->
               <li><a href="../index.html">Głowna</a></li>
               <li><a href="../links/zalecenia.html">Zlecenia</a></li>
               <li><a href="../links/firmy.html">Firmy</a></li>
               <li><a href="./regalumin.html">Regulamin</a></li>
             </ul>
           </nav>
+          <!--nadaje styl do poniżej części headeru-->
           <div class="asphyxia">
             <h1>Porady</h1>
           </div>
     </header>
+    <!--demonstracja porad w skróconej formie-->
     <div class="image-container">
         <div>
             <img src="../img/1.jpg" class="thumbnail">
@@ -85,6 +89,7 @@
         </div>
 
     </div>
+    <!--klasa co zawieraja w sobie wariant zdjęć z roszerzenym tekstem(więcej informacji i większe zdjęcia)-->
     <div id="fullscreen-container" style="display:none;">
         <div id="fullscreen-content">
             <img id="fullscreen-image" src="" alt="Full Image" class="fullscreen-image">
@@ -119,7 +124,7 @@
         </div>
       </footer>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+      <!--skryp który pozwala otwierać zdjęcia fullscreen i zobaczyć więcej podanej informacji-->
       <script>
                 $(document).ready(function() {
             $('.thumbnail').on('click', function() {
