@@ -4,36 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warsztat</title>
+    <!-- Dołączenie CSS -->
     <link rel="stylesheet" href="style/style.css">
+    <!-- Dołączenie czcionek Google -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!-- Dodanie favicon -->
+
 <link rel="icon" href="img/badge-check.png" type="image/x-icon">
 
 
 
 </head>
 <body>
-    <!--header(nadgłowek strony)-->
+        <!-- Nagłówek strony -->
+
     <header>
         <div class="top-panel">
+                      <!-- Logo -->
+
             <p id="logo"><span style="color: blue;">R</span>epai<span style="color: orange;">r</span></p>
+            <!-- Ikona menu dla wersji mobilnej -->
 
             <div class="menu-icon" style="margin-right: 20px;">&#9776;</div>
-            <!--wersja nagłowku dla komórek-->
+                        <!-- Nawigacja dla wersji mobilnej -->
+
             <nav id="mobile-nav">
                 <ul>
-                   <!--hyperłącze do innych stron witryny-->
+                                      <!-- Linki nawigacyjne -->
+
                     <li><a href="home">Firmy</a></li>
                     <li><a href="./links/zalecenia.html">Zlecenia</a></li>
                     <li><a href="./links/porady.html">Porady</a></li>
                     <li><a href="./links/regalumin.html">Regalumin</a></li>
                     <li><a href="./links/form.html">Form</a></li>
                     <li><a href="#" id="open-mb">Zaloguj sie</a></li>
-                    <!--forma rejestracji w której użytkownik podaje login, username i hasło-->
+                                        <!-- Formularz logowania (wersja mobilna) -->
+
                     <div class="regestration-mb">
                       <form class="login-form-mb" id="login-form-mb" method="post">
                         <div class="login-container">
@@ -55,7 +68,8 @@
                     
                 </ul>
             </nav>
-            <!--wersja dla komputerów-->
+                        <!-- Nawigacja dla wersji desktopowej -->
+
             <ul id="ds">
                 <li><a href="">Firmy</a></li>
                 <li><a href="./links/zalecenia.html">Zlecenia</a></li>
@@ -67,10 +81,14 @@
                 
 
             </ul>
+                        <!-- Sekcja autoryzacji -->
+
            <div class="auth" style="color: black;">
             <p id="loginMessage"></p>
             <p id="responseMessage"></p> 
            </div>
+                       <!-- Formularze logowania i rejestracji -->
+
             <div class="regestration" style="color: black;">
                
 
@@ -97,9 +115,10 @@
                     </div>
                     
                 </form>
+                                  <!-- Formularz rejestracji -->
+
                   
-                  
-                  <form class="sign-form "  action=""  method="POST" id="registration-form">
+                  <form class="sign-form "  action="registr.php"  method="POST" id="registration-form">
                     
                     <div class="sign-container">
 
@@ -134,15 +153,17 @@
             </div>
            
         </div>
+        <!-- Główny nagłówek strony -->
 
         <h1 style="text-align: center; font-size: 45px; margin-top: 30px;">Najlepsze Warsztaty Samochodowe</h1>
+        <!-- Sekcja z formularzem kontaktowym -->
         <div class="contact">
             <p id="content-text">Chcesz skontaktowac sie?</p>
             <br>
             <input type="tel">
         </div>
     </header>
-   
+   <!-- Sekcja ofert -->
     <div class="ofera">
             <div class="contant">
                 <img src="img/badge-check.png" alt="">
@@ -172,7 +193,7 @@
     <a href="https://t.me/whosafraidofthebigblack"><img src="/img/nomoney.jpg" alt="" id="tg"></a>
    </div>-->
     
-        <!--osnowna częśc strony która zawieraje mapę w środku i tekst z lewej i prawej strony(div class left & right)-->
+       <!-- Sekcja z mapą i tekstem --> 
     <div class="map-container">
         <div class="map">
             <div class="left">
@@ -185,6 +206,7 @@
                 <p>Dodatkowe porady: Oferuję nie tylko usługi, ale także fachowe porady, które mogą pomóc w przyszłości w unikaniu problemów.</p>
             </div>
             <div class="map-iframe">
+              <!-- Wstawienie Google Maps -->
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8323.93871663141!2d20.622298448788932!3d50.868589187458085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47178818af891105%3A0x5025d8b8c0cdcdf3!2z0JrQtdC70YzRhtC1!5e0!3m2!1sru!2spl!4v1726689708257!5m2!1sru!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="right">
@@ -198,7 +220,7 @@
             </div>
         </div>
     </div>
-    
+    <!-- Stopka -->
     <footer>
         <div class="footer-container">
           <div class="footer-logo">
@@ -226,21 +248,24 @@
       </footer>
       <script>
         console.log("Скрипт загружен");
+        // Oczekiwanie na załadowanie całej zawartości DOM
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registration-form");
+   // Sprawdzenie, czy formularz istnieje
   if (!form) {
     console.error("Форма не найдена!");
     return;
   }
-
+ // Obsługa zdarzenia "submit" dla formularza rejestracji
   form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+    event.preventDefault();// Zatrzymanie domyślnego zachowania formularza
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
 
     try {
+      // Wysłanie danych rejestracji na serwer
       const response = await fetch("/register", {
         method: "POST",
         headers: {
@@ -250,9 +275,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const result = await response.json();
+      // Wyświetlenie komunikatu odpowiedzi
       document.getElementById("responseMessage").textContent = result.message+" "+ username;
       console.log(password);
-      form.reset(); 
+      form.reset(); // Resetowanie formularza
       
     } catch (error) {
       console.error("Ошибка:", error);
@@ -260,13 +286,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+// Obsługa logowania w wersji desktopowej
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("login-form").addEventListener("submit", async function (event) {
-      event.preventDefault();
+      event.preventDefault(); //Zatrzymanie domyślnego zachowania formularza
       const username = document.getElementById("username_log").value;
       const password = document.getElementById("password_log").value;
 
       try {
+        // Wysłanie danych logowania na serwer
         const response = await fetch("/login", {
           method: "POST",
           headers: {
@@ -277,8 +305,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const data = await response.json();
         if (response.ok) {
+          // Wyświetlenie komunikatu o pomyślnym logowaniu
           document.getElementById("loginMessage").textContent = "Logowanie udane się! "+ username;
-          localStorage.setItem("token", data.token); // Сохраняем токен
+          localStorage.setItem("token", data.token); // Zapis tokena w localStorage
           const token=localStorage.getItem("token");
           console.log(token);
 
@@ -291,14 +320,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+  // Obsługa logowania w wersji mobilnej
   document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("login-form-mb").addEventListener("submit", async function (event) {
-      event.preventDefault();
+      event.preventDefault();// Zatrzymanie domyślnego zachowania formularza
 
       const username = document.getElementById("username_log-mb").value;
       const password = document.getElementById("password_log-mb").value;
 
       try {
+        // Wysłanie danych logowania na serwer
         const response = await fetch("/login", {
           method: "POST",
           headers: {
@@ -309,8 +340,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const data = await response.json();
         if (response.ok) {
+          // Wyświetlenie komunikatu o pomyślnym logowaniu
           document.getElementById("loginMessage").textContent = "Logowanie udane się! "+ username;
-          localStorage.setItem("token", data.token); // Сохраняем токен
+          localStorage.setItem("token", data.token); // Zapis tokena w localStorage
           const token=localStorage.getItem("token");
           console.log(token);
 
@@ -326,6 +358,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
    
       </script>
+      <!-- Dodawanie skryptów -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
       <script src="script/jquary.js"></script>
 </body>

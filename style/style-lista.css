@@ -1,96 +1,109 @@
+/* Style dla stopki */
 footer {
-    background-color: #f0f0f0;
-    color: #000000;
-    padding: 40px 20px;
-    font-family: "Inria Sans", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    margin-top: 30px;
-
-  }
-
-  .footer-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-
-  }
-
-  .footer-logo img {
-    width: 110px;
-  }
-
-  .footer-contacts,
-  .footer-socials {
-    margin-bottom: 20px;
-
-  }
-
-  .footer-contacts h3,
-  .footer-socials h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-
-  }
-  .footer-socials img{
-    width: 24px;
-    margin: 2px;
-  }
-
-  .footer-contacts p,
-  .footer-contacts a {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    color: #000000;
-    text-decoration: none;
-
-  }
-  .footer-copyright {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    border-top: 1px solid #444;
-    padding-top: 10px;
-  }
-  .price-list {
-    max-width: 100%;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f0f0f0; /* Jasnoszare tło */
+  color: #000000; /* Czarny kolor tekstu */
+  padding: 40px 20px; /* Padding wokół zawartości stopki */
+  font-family: "Inria Sans", sans-serif; /* Cząstka rodziny czcionek */
+  font-weight: 300; /* Lżejsza grubość czcionki */
+  font-style: normal; /* Normalny styl czcionki */
+  margin-top: 30px; /* Górny margines stopki */
 }
 
+/* Kontener dla zawartości stopki (logo, dane kontaktowe, media społecznościowe) */
+.footer-container {
+  display: flex; /* Użycie flexbox do poziomego wyrównania */
+  justify-content: space-between; /* Rozdzielanie elementów na przestrzeń */
+  flex-wrap: wrap; /* Zawartość będzie zawijana na mniejszych ekranach */
+  max-width: 1200px; /* Maksymalna szerokość kontenera stopki */
+  margin: 0 auto; /* Wyrównanie kontenera do środka */
+}
+
+/* Styl logo w stopce */
+.footer-logo img {
+  width: 110px; /* Ustawienie szerokości logo */
+}
+
+/* Styl dla sekcji kontaktów i mediów społecznościowych */
+.footer-contacts, 
+.footer-socials {
+  margin-bottom: 20px; /* Margines poniżej sekcji */
+}
+
+/* Nagłówki sekcji kontaktów i mediów społecznościowych */
+.footer-contacts h3, 
+.footer-socials h3 {
+  font-size: 18px; /* Ustawienie rozmiaru czcionki */
+  margin-bottom: 10px; /* Margines poniżej nagłówka */
+}
+
+/* Stylowanie ikon mediów społecznościowych */
+.footer-socials img {
+  width: 24px; /* Szerokość ikon */
+  margin: 2px; /* Margines między ikonami */
+}
+
+/* Stylowanie tekstów i linków w sekcji kontaktów */
+.footer-contacts p, 
+.footer-contacts a {
+  margin: 0; /* Usunięcie marginesów */
+  padding: 0; /* Usunięcie paddingu */
+  list-style: none; /* Usunięcie stylu listy */
+  color: #000000; /* Czarny kolor tekstu */
+  text-decoration: none; /* Usunięcie podkreślenia z linków */
+}
+
+/* Styl dla sekcji praw autorskich */
+.footer-copyright {
+  text-align: center; /* Wyrównanie tekstu do środka */
+  margin-top: 20px; /* Margines nad sekcją */
+  font-size: 14px; /* Mniejszy rozmiar czcionki dla tekstu praw autorskich */
+  border-top: 1px solid #444; /* Górna granica */
+  padding-top: 10px; /* Padding u góry */
+}
+
+/* Styl dla kontenera cennika */
+.price-list {
+  max-width: 100%; /* Pełna szerokość */
+  margin: 0 auto; /* Wyrównanie kontenera do środka */
+  background-color: #fff; /* Białe tło */
+  padding: 20px; /* Padding wokół zawartości */
+  border-radius: 8px; /* Zaokrąglone rogi */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Cień, aby dodać głębi */
+}
+
+/* Styl nagłówków w cenniku */
 h2 {
-    text-align: center;
-    color: #333;
+  text-align: center; /* Wyrównanie nagłówka do środka */
+  color: #333; /* Ciemnoszary kolor tekstu */
 }
 
+/* Styl dla tabeli */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+  width: 100%; /* Pełna szerokość tabeli */
+  border-collapse: collapse; /* Łączenie granic tabeli */
+  margin-top: 10px; /* Margines nad tabelą */
 }
 
+/* Styl dla nagłówków tabeli */
 thead th {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
-    text-align: left;
+  background-color: #007bff; /* Niebieskie tło dla nagłówków */
+  color: #fff; /* Biały kolor tekstu */
+  padding: 10px; /* Padding wewnątrz nagłówków */
+  text-align: left; /* Wyrównanie tekstu do lewej */
 }
 
+/* Styl dla danych tabeli */
 tbody td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+  padding: 10px; /* Padding wewnątrz komórek tabeli */
+  border-bottom: 1px solid #ddd; /* Jasnoszara granica między wierszami */
 }
 
+/* Tło co drugiego wiersza w tabeli */
 tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2; /* Jasnoszare tło dla parzystych wierszy */
 }
 
+/* Efekt najechania myszką na wiersz */
 tbody tr:hover {
-    background-color: #e9e9e9;
+  background-color: #e9e9e9; /* Trochę ciemniejsze tło po najechaniu */
 }

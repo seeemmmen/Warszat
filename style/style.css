@@ -1,25 +1,31 @@
-*{
+/* Resetowanie paddingu i marginesów dla wszystkich elementów */
+* {
     padding: 0;
     margin: 0;
 }
-body{
-    background-color: #f8f9fad9;
+
+/* Stylizacja ciała strony */
+body {
+    background-color: #f8f9fad9; /* Jasny kolor tła */
 }
 
-header{
-    height: 500px;
-    background-image: url('../img/back.jpg');
+/* Stylizacja sekcji nagłówka */
+header {
+    height: 500px; /* Ustalenie wysokości nagłówka */
+    background-image: url('../img/back.jpg'); /* Obraz tła */
     background-repeat: no-repeat;
     width: 100%;
-    background-size: cover;
-    background-position: 10%;
+    background-size: cover; /* Pokrycie całego nagłówka */
+    background-position: 10%; /* Dostosowanie pozycji tła */
     font-size: 50px;
-    color: white;
+    color: white; /* Kolor tekstu */
     font-family: "Inria Sans", sans-serif;
     font-weight: 400;
     font-style: normal;
 }
-.top-panel{
+
+/* Górny panel nawigacyjny i logo */
+.top-panel {
     height: 80px;
     width: 900px;
     justify-content: center;
@@ -29,27 +35,34 @@ header{
     gap: 20px;
     align-items: center;
 }
-.top-panel p{
+
+/* Stylizacja paragrafów i elementów listy w górnym panelu */
+.top-panel p {
     display: inline;
-    
 }
-.top-panel li{
+
+.top-panel li {
     list-style: none;
     display: inline;
     justify-content: space-between;
     margin-left: 13px;
 }
-.top-panel a{
+
+.top-panel a {
     text-decoration: none;
     color: white;
 }
-#logo{
+
+/* Stylizacja logo */
+#logo {
     font-size: 25px;
 }
-.contact{
+
+/* Stylizacja formularza kontaktowego */
+.contact {
     width: 300px;
     margin: 0 auto;
-    background-color: #f8f9fad9;
+    background-color: #f8f9fad9; /* Jasne tło dla sekcji kontaktowej */
     height: 100px;
     margin-top: 30px;
     font-size: 25px;
@@ -57,23 +70,24 @@ header{
     padding: 20px;
 }
 
-
-.contact input{
+.contact input {
     border: 0px;
     padding: 10px;
     outline: none;
     display: block;
     margin-right: auto;
     margin-left: auto;
-    
 }
-.contact p{
+
+.contact p {
     text-align: center;
     font-family: "Inria Sans", sans-serif;
     font-weight: 300;
     font-style: normal;
 }
-.ofera{
+
+/* Sekcja ofert */
+.ofera {
     width: 100%;
     background-color: white;
     height: 200px;
@@ -81,160 +95,165 @@ header{
     justify-content: center;
     gap: 15px;
 }
-.contant    {
+
+/* Ogólna stylizacja treści */
+.contant {
     justify-content: center;
     align-items: center;
     text-align: center;
     font-family: "Lato", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  margin-top: 30px;
-
-  
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 30px;
 }
-.contant-text{
+
+.contant-text {
     font-weight: bold;
 }
-.contant img{
+
+.contant img {
     width: 70px;
     margin-bottom: 20px;
 }
 
+/* Responsywność dla urządzeń mobilnych: Dostosowanie stylów do mniejszych ekranów */
 @media (min-width: 319px) and (max-width: 480px) {
-    .top-panel{
+    .top-panel {
         width: 350px;
         display: block;
-
     }
-    .regestration{
+
+    .regestration {
         display: none;
     }
-    
-    .top-panel li{
+
+    .top-panel li {
         font-size: 15px;
         margin-left: 0px;
         margin: 4px;
     }
-    #ds  {
+
+    #ds {
         display: none;
     }
-    #header-phone{
+
+    #header-phone {
         float: left;
         display: none;
-       
     }
+
     #icon-nav-mb {
         display: inline;
         float: right;
         margin-left: 20px;
-     
     }
-    .contant img{
+
+    .contant img {
         width: 50px;
         margin-bottom: 15px;
     }
-    .contant    {
+
+    .contant {
         justify-content: center;
         align-items: center;
         text-align: center;
         font-family: "Lato", sans-serif;
-      font-weight: 400;
-      font-style: normal;
-      font-size: 13px;
-      
+        font-weight: 400;
+        font-style: normal;
+        font-size: 13px;
     }
-    iframe[src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8323.93871663141!2d20.622298448788932!3d50.868589187458085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47178818af891105%3A0x5025d8b8c0cdcdf3!2z0JrQtdC70YzRhtC1!5e0!3m2!1sru!2spl!4v1726689708257!5m2!1sru!2spl"]{
+
+    iframe[src="https://www.google.com/maps/embed?pb=..."] {
         width: 200px;
         height: 300px;
     }
-    .footer-logo img{
+
+    .footer-logo img {
         width: 20px;
     }
-    .menu-icon{
-        display: block;
-    }
-    #mobile-nav{
+
+    .menu-icon {
         display: block;
     }
 
+    #mobile-nav {
+        display: block;
+    }
+}
 
-  }
-  footer {
+/* Stylizacja stopki */
+footer {
     background-color: #f0f0f0;
     color: #000000;
     padding: 40px 20px;
     font-family: "Inria Sans", sans-serif;
     font-weight: 300;
     font-style: normal;
-  
-  }
-  
-  .footer-container {
+}
+
+/* Kontener stopki */
+.footer-container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
-   
-  }
-  
-  .footer-logo img {
+}
+
+/* Stylizacja logo w stopce */
+.footer-logo img {
     width: 110px;
-  }
-  
-  .footer-contacts,
-  .footer-socials {
+}
+
+/* Stylizacja kontaktów i linków społecznościowych w stopce */
+.footer-contacts,
+.footer-socials {
     margin-bottom: 20px;
-    
-  }
-  
-  .footer-contacts h3,
-  .footer-socials h3 {
+}
+
+.footer-contacts h3,
+.footer-socials h3 {
     font-size: 18px;
     margin-bottom: 10px;
-    
-  }
-  
-  .footer-contacts p,
-  .footer-contacts a {
+}
+
+.footer-contacts p,
+.footer-contacts a {
     margin: 0;
     padding: 0;
     list-style: none;
     color: #000000;
     text-decoration: none;
-
-  }
-
-  #icon-nav-mb{
-    width: 40px;
 }
-  .footer-socials a {
+
+/* Ikony mediów społecznościowych w stopce */
+.footer-socials a {
     margin-right: 10px;
     color: #000000;
-  }
-  
-  .footer-socials img {
+}
+
+.footer-socials img {
     width: 24px;
-  }
-  
-  .footer-copyright {
+}
+
+/* Sekcja praw autorskich w stopce */
+.footer-copyright {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
     border-top: 1px solid #444;
     padding-top: 10px;
-  }
-  
-  iframe[src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8323.93871663141!2d20.622298448788932!3d50.868589187458085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47178818af891105%3A0x5025d8b8c0cdcdf3!2z0JrQtdC70YzRhtC1!5e0!3m2!1sru!2spl!4v1726689708257!5m2!1sru!2spl"] {
+}
+
+/* Stylizacja iframe z mapą Google */
+iframe[src="https://www.google.com/maps/embed?pb=..."] {
     margin-left: auto;
     margin-right: auto;
     display: block;
     padding: 30px;
-  
-  }
+}
 
-
-
+/* Stylizacja sekcji mapy */
 .map-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -250,15 +269,17 @@ header{
     gap: 20px;
 }
 
+/* Sekcje mapy po lewej i prawej stronie */
 .left, .right {
     flex: 1;
     min-width: 300px;
     padding: 10px;
     background: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Stylizacja iframe w sekcji mapy */
 .map-iframe {
     flex-basis: 100%;
     text-align: center;
@@ -272,19 +293,16 @@ header{
     border-radius: 8px;
 }
 
+/* Responsywność dla urządzeń mobilnych w sekcji mapy */
 @media (max-width: 768px) {
     .map {
         flex-direction: column;
         margin-top: 20px;
     }
+
     .map-iframe {
         width: 300px;
     }
-}
-#img{
-    width: 40px;
-    background-color: red;
-   
 }
 @media(min-width:481px){
     #icon-nav-mb{
@@ -304,6 +322,11 @@ header{
     }
 
 }
+/* Stylizacja nawigacji mobilnej */
+#icon-nav-mb {
+    width: 40px;
+}
+
 .menu-icon {
     font-size: 30px;
     cursor: pointer;
@@ -312,17 +335,18 @@ header{
     right: 0;
 }
 
+/* Stylizacja menu nawigacji mobilnej */
 #mobile-nav {
     position: fixed;
     top: 0;
-    left: 100%; 
+    left: 100%;
     width: 250px;
     height: 100vh;
     background-color: #3498db;
     transition: left 0.3s ease-in;
-  
 }
 
+/* Stylizacja listy w menu nawigacji mobilnej */
 #mobile-nav ul {
     list-style: none;
     margin-right: 50px;
@@ -333,9 +357,9 @@ header{
     margin-top: 20px;
 }
 
+/* Stylizacja linków w menu nawigacji mobilnej */
 #mobile-nav ul li {
     display: block;
-   
 }
 
 #mobile-nav ul li a {
@@ -347,26 +371,23 @@ header{
 #mobile-nav ul li a:hover {
     text-decoration: underline;
 }
-#mobile-nav img{
+
+/* Stylizacja logo w menu nawigacji mobilnej */
+#mobile-nav img {
     margin: 10px;
 }
 
-
-
-.regestration{
+/* Stylizacja formularzy rejestracyjnych */
+.regestration {
     width: 250px;
     height: 0px;
     background-color: aliceblue;
-    right:150px;
-    
+    right: 150px;
     margin-top: 380px;
     z-index: 10;
-
-
-    
 }
 
-
+/* Stylizacja formularzy logowania i rejestracji */
 .login-container {
     padding: 60px;
     border-radius: 10px;
@@ -418,21 +439,6 @@ button {
 button:hover {
     background-color: #9face6;
 }
-.regestration-mb{
-    position: absolute;
-    top:300px ;
-    color: white;
-    
-    
-}
-.regestration-mb h2{
-    color: white;
-    font-size: 15px;
-}
-.regestration-mb .input-group{
-    color: white;
-    width: 100px;
-}
 .sign-container{
     padding: 60px;
     border-radius: 10px;
@@ -461,6 +467,7 @@ button:hover {
     outline: none;
     transition: border 0.3s ease;
 }
+/* Komunikat autoryzacyjny */
 .auth{
     width: 250px;
     height: 100px;
@@ -469,29 +476,26 @@ button:hover {
     right: 0;
     margin-top: 30px;
     text-align: center;
+    z-index: 10;
 
 }
 .auth p{
     margin-top: 40px;
     display: block;
 }
-
-
-
-#arrow{
-    
+/* Stylizacja przycisku strzałki */
+#arrow {
     position: fixed;
     right: 0;
     top: 400px;
-
 }
-#arrow img{
+
+#arrow img {
     width: 50px;
 }
 
-
-#arrow #tg{
+#arrow #tg {
     position: absolute;
-    left:100px;
+    left: 100px;
     border-radius: 5px;
 }
