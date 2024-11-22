@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Nagłówki strony, definiujące kodowanie i viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zalecanie</title>
+    <!-- Ładowanie zewnętrznych arkuszy stylów (Bootstrap, własny CSS, Google Fonts) -->
     <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/style-zalecenia.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -12,6 +14,8 @@
 
 </head>
 <body>
+    
+    <!-- Nagłówek strony z linkami do innych arkuszów strony-->
     <header style="display: inline;">
         <nav>
             <div class="nav-bg"></div>
@@ -24,9 +28,11 @@
             </ul>
           </nav>
           <div class="asphyxia">
+            <!--Głowny napis podający wiedze o tym na jakiej stronie jest użytkownik-->
             <h1>Zlecenia</h1>
           </div>
     </header>
+    <!--Głowna część strony z grafiką, usługami ta powiększonnej informacje-->
     <div class="image-container">
         <div>
             <img src="../img/1.jpg">
@@ -175,9 +181,11 @@
         </button>
     </div>
 </div>
+<!--Przyczisk, ktory naprawia użytkownika do listy cen-->
 <div class="button" style="margin-top: 20px;">
     <button type="button"  class="btn btn-outline-dark "><a href="lista.html" >Cennik</a></button>
 </div>
+ <!-- Stopka strony -->
     <footer>
         <div class="footer-container">
           <div class="footer-logo">
@@ -198,6 +206,7 @@
             <a href="#"><img src="../img/twitter.png" alt="Twitter"></a>
           </div>
         </div>
+         <!-- Sekcja praw autorskich i przycisk powrotu -->
         <div class="footer-copyright">
           <p>© 2024 Wszelkie prawa zastrzeżone.</p>
           <button type="button" class="btn btn-outline-dark" onclick="window.history.go(-1); return false;">Back</button>
