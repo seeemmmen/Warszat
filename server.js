@@ -10,10 +10,12 @@ const cookieParser = require('cookie-parser'); // Dodajemy cookie-parser do obs�
 const app = express();
 const PORT = 3000;
 const transporter = nodemailer.createTransport({
-  service: "Yahoo",
+  host: "smtp.zoho.eu",
+  port: 465,
+  secure: true,
   auth: {
-    user: 'warsztatpl@yahoo.com', // Zastąp swoją nazwą użytkownika Yahoo
-    pass: 'Parol2017pl' // Zastąp hasłem aplikacji Yahoo
+    user: 'rotbartsemen@zohomail.eu', // Zastąp swoją nazwą użytkownika Yahoo
+    pass: 'Parol2017' // Zastąp hasłem aplikacji Yahoo
   }
 });
 mongoose.connect("mongodb+srv://seeemmmen:Parol2017@web.omhac.mongodb.net/?retryWrites=true&w=majority&appName=Web");
@@ -107,10 +109,94 @@ app.post("/register", async (req, res) => {
 
     // Wysyłanie powiadomienia na e-mail
     const mailOptions = {
-      from: 'warsztatpl@yahoo.com',
+      from: 'rotbartsemen@zohomail.eu',
       to: email,
       subject: 'Warsztat',
-      text: `Dziękujemy za rejestrację, ${username}!`
+      html: `
+  <!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dziękujemy za rejestrację</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .email-header {
+            background-color: #007bff;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .email-body {
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .email-body h2 {
+            color: #007bff;
+            margin-top: 0;
+        }
+        .email-footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            color: #777;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px 0;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Dziękujemy za rejestrację!</h1>
+        </div>
+        <div class="email-body">
+            <h2>Witaj! ${username}</h2>
+            <p>Dziękujemy za rejestrację na naszej platformie. Jesteśmy zachwyceni, że do nas dołączyłeś/aś!</p>
+            <p>Aby rozpocząć korzystanie z naszego serwisu, kliknij poniższy przycisk:</p>
+            <p>Jeśli masz jakieś pytania, skontaktuj się z nami, odpowiemy najszybciej, jak to możliwe!</p>
+            <p>Pozdrawiamy,<br>Zespół „Repair”</p>
+        </div>
+        <div class="email-footer">
+            <p>© 2023 Warsztat „Repair”. Wszystkie prawa zastrzeżone.</p>
+            <p>Jeśli nie rejestrowałeś/aś się na naszej platformie, zignoruj tę wiadomość.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+  `,
     };
     transporter.sendMail(mailOptions, function(error, info) {
       if (error) {
@@ -126,28 +212,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// Trasa aktualizacji informacji o użytkowniku
-app.post("/about-me", authenticateToken, async (req, res) => {
-  const { name, lastname, gender, address, bio } = req.body;
 
-  try {
-      const user = await User.findOne({ username: req.user.username });
-      if (!user) {
-          return res.status(404).json({ message: "Użytkownik nie znaleziony" });
-      }
-      
-      user.name = name;
-      user.lastname = lastname;
-      user.gender = gender;
-      user.address = address;
-      user.bio = bio;
-      await user.save();
-
-      res.status(200).json({ message: "Informacje zaktualizowane pomyślnie" });
-  } catch (error) {
-      res.status(500).json({ message: "Błąd serwera" });
-  }
-});
 
 app.listen(PORT, () => {
   console.log(`Serwer uruchomiony na http://localhost:${PORT}`);
