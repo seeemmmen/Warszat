@@ -1,94 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Companies</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warsztat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="icon" href="/img/badge-check.png" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Inria Sans", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .background-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('back.jpg');
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+    }
 
-    <link rel="stylesheet" href="../style/style-firmy.css">
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+      color: white;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 600px;
+      color: white;
+      position: fixed;
+      width: 100%;
+      z-index: 10;
+      top: 0;
+    }
+
+    #logo {
+      font-size: 24px;
+      font-weight: bold;
+      font-family: "Inria Sans", sans-serif;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      padding: 5px 10px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: orange;
+    }
+
+    .container {
+      margin-top: 100px;
+    }
+    .company {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      margin-bottom: 20px;
+      padding: 10px;
+      text-decoration: none;
+      color: black;
+    }
+    .company img {
+      margin-right: 20px;
+      width: 100px;
+      height: 100px;
+    }
+    .btn {
+      padding: 5px 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #333;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #f8f9fa;
+      padding: 40px 0 20px;
+      margin-top: auto;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0 20px;
+    }
+    .footer-logo img {
+      width: 100px;
+      height: auto;
+    }
+    .footer-contact h3,
+    .footer-social h3 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+    .footer-contact p {
+      margin: 5px 0;
+      color: #666;
+    }
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+    }
+    .footer-copyright {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      color: #666;
+    }
+    @media (max-width: 768px) {
+      .navbar {
+        display: none;
+      }
+      .company {
+        flex-direction: column;
+        text-align: center;
+      }
+      .company img {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+      }
+      .social-icons {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="title">FIRMY ŚWIADCZĄCE USŁUGI</div>
-
-        <div class="company">
-            <img src="https://s3-alpha-sig.figma.com/img/1afe/d645/f8113ccbe22afd64952d0d92b430f3a6?Expires=1728864000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ikGJivOqyetnFji1GwfkxdjNhpQM1AvYkChdqpChw-BqM3NrD7rhLrPiS20KHgxttnCr~sAT7grRz94CErSRCkSGL-vp4wRFU1N4a6B3CQa7na4iN1jW-P5ZsLUpYmsGPBqSSzBUHfcziDuASxL3nen1PQuzt2WcrEKTNVZ35EcDdgWZw1q7khVymf3NR4jCX4gNStJubFcWZbDxGxi5KGyBapOpDVtSGiKqLLKAUM40ahaNx63G94SWHG6a6IPJGCxdTKhKv~CDw~0uvAm0ez~Vo7Q7cZqUDJWwzxdKoJduIlOIu~Q6SeGpU87EtVXX~-h3RqHBHoXPKgdFyNsdeA__" alt="Warsztat Icon">
-            <div class="info">
-                <h2>Warsztat</h2>
-                <p>Kielce, ul. Sandomierska 15</p>
-            </div>
-        </div>
-
-        <div class="company">
-            <img src="https://s3-alpha-sig.figma.com/img/8323/3bf2/ae430ab73e7974b26e5bf5877ac3231e?Expires=1728864000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ceLTaKv9dnRo1AkKPmeDGfeHbAJlCzyL9cYlcvmdeJHLS0S66MWOd~H7ZhKITxWCwyk40rmXiBcghNKrVn3o2RXlAnCSdMZh3v0-G-Fk~g88cNdNg6aahKyffXPOrKcAXuZ0i7GCpU7y~km3~fuYb7ITWJyVvdf1HXfVzoaMrsSYxGUsUZJF-2lC~IInUR2aO76GGf~VX3zZx9KBuD-TSshAy0fwScodl-fUWHj2xB3v1ojTbB5Xbsm048HIFumySphF3PprouBcDpVcv0aTj4Qkoo19bacywmA3YY9wr4bzJE9K1IRDrlDjRAk9zo0942KkeE3PrznVq8VXPVViRg__" alt="Mechanical Icon">
-            <div class="info">
-                <h2>Mechanical</h2>
-                <p>Kielce, ul. Sienkiewicza 20</p>
-            </div>
-        </div>
-
-        <div class="company">
-            <img src="https://s3-alpha-sig.figma.com/img/0be7/2617/9e30efd183bac0b0059d273d689395d6?Expires=1728864000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=S-WY07Id2tNGqragY8uD7CbSfWN7eaYh4-A9IQK2m2v0rKyPP-qCnclAcFhZ6~oBKB2etrJx8YVJTV5-PmE6hcoxQqkmPQa7EvMm9-Kp~np0eCuDnKPbf61pNte5IdguVhScSLSDM~D9ePk9lJEPSJfCzLeT994GQG0I3FsnzmStbWUR9YrDG~9bWJRnupFCLAldolyVaIOrS4FrqCKJmUmzl87gc2eGCBUaW2a8nNWcG514rXP7TdRV1dQ0i9f22IvBvor8y03DU0peovYpf-IMXV-0F3qigL65NIEr0jKZ9Kxk6TRRlng~c8Vo~HNASIJr4jlZa5ycif6fUYpIxQ__" alt="FixCar Icon">
-            <div class="info">
-                <h2>FixCar</h2>
-                <p>Warszawa, ul. Konstruktorska 5</p>
-            </div>
-        </div>
-        <div class="company">
-          <img src="https://s3-alpha-sig.figma.com/img/0be7/2617/9e30efd183bac0b0059d273d689395d6?Expires=1728864000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=S-WY07Id2tNGqragY8uD7CbSfWN7eaYh4-A9IQK2m2v0rKyPP-qCnclAcFhZ6~oBKB2etrJx8YVJTV5-PmE6hcoxQqkmPQa7EvMm9-Kp~np0eCuDnKPbf61pNte5IdguVhScSLSDM~D9ePk9lJEPSJfCzLeT994GQG0I3FsnzmStbWUR9YrDG~9bWJRnupFCLAldolyVaIOrS4FrqCKJmUmzl87gc2eGCBUaW2a8nNWcG514rXP7TdRV1dQ0i9f22IvBvor8y03DU0peovYpf-IMXV-0F3qigL65NIEr0jKZ9Kxk6TRRlng~c8Vo~HNASIJr4jlZa5ycif6fUYpIxQ__" alt="FixCar Icon">
-          <div class="info">
-              <h2>FixCar</h2>
-              <p>Warszawa, ul. Konstruktorska 5</p>
-          </div>
-      </div>
-      <div class="company">
-        <img src="https://s3-alpha-sig.figma.com/img/0be7/2617/9e30efd183bac0b0059d273d689395d6?Expires=1728864000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=S-WY07Id2tNGqragY8uD7CbSfWN7eaYh4-A9IQK2m2v0rKyPP-qCnclAcFhZ6~oBKB2etrJx8YVJTV5-PmE6hcoxQqkmPQa7EvMm9-Kp~np0eCuDnKPbf61pNte5IdguVhScSLSDM~D9ePk9lJEPSJfCzLeT994GQG0I3FsnzmStbWUR9YrDG~9bWJRnupFCLAldolyVaIOrS4FrqCKJmUmzl87gc2eGCBUaW2a8nNWcG514rXP7TdRV1dQ0i9f22IvBvor8y03DU0peovYpf-IMXV-0F3qigL65NIEr0jKZ9Kxk6TRRlng~c8Vo~HNASIJr4jlZa5ycif6fUYpIxQ__" alt="FixCar Icon">
-        <div class="info">
-            <h2>FixCar</h2>
-            <p>Warszawa, ul. Konstruktorska 5</p>
-        </div>
-    </div>
-    <div class="company">
-      <img src="https://s3-alpha-sig.figma.com/img/0be7/2617/9e30efd183bac0b0059d273d689395d6?Expires=1728864000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=S-WY07Id2tNGqragY8uD7CbSfWN7eaYh4-A9IQK2m2v0rKyPP-qCnclAcFhZ6~oBKB2etrJx8YVJTV5-PmE6hcoxQqkmPQa7EvMm9-Kp~np0eCuDnKPbf61pNte5IdguVhScSLSDM~D9ePk9lJEPSJfCzLeT994GQG0I3FsnzmStbWUR9YrDG~9bWJRnupFCLAldolyVaIOrS4FrqCKJmUmzl87gc2eGCBUaW2a8nNWcG514rXP7TdRV1dQ0i9f22IvBvor8y03DU0peovYpf-IMXV-0F3qigL65NIEr0jKZ9Kxk6TRRlng~c8Vo~HNASIJr4jlZa5ycif6fUYpIxQ__" alt="FixCar Icon">
-      <div class="info">
-          <h2>FixCar</h2>
-          <p>Warszawa, ul. Konstruktorska 5</p>
-      </div>
+<div class="logo-container">
+  <div id="logo">
+    <span style="color: blue;">R</span>
+    <span style="color: white;">epai</span>
+    <span style="color: orange;">r</span>
   </div>
+</div>
+<div class="container">
+  <div class="background-image"></div>
+  <div class="title">FIRMY ŚWIADCZĄCE USŁUGI</div>
+  <header>
+    <nav>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Główna</a>
+        <a href="porady.html" class="nav-link">Porady</a>
+        <a href="../links/zalecenia.html" class="nav-link">Zlecenia</a>
+        <a href="./regalumin.html" class="nav-link">Regulamin</a>
+      </div>
+    </nav>
+  </header>
 
-        <div class="logo">
-            <img src="https://s3-alpha-sig.figma.com/img/64ab/9f48/ba540946ffae233ff65fa956b9bff5e9?Expires=1728864000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ChwZYTsLB3ZqTzBB6Dwtlnj7sUwVb0YsW1~3TRYpXZYurdI7g1oUfxOKOqKsO0PfuT-BYVSaUNxrcVCI1fagdEIOgfJJeGAde~BUDVm6ATZDP1DilFjDcsHBC3nOQmHZUmd4bgo8w~a60mN-Puep~v5USlTuX-I5~qM27oR7Dgri~Ci6zzp8NEDc9BXLe1nqx0Nu1UWCUpb6mKzfOcFdjNIfuI1xmFBKaaFvGfO1a9nvBclOspOLa7SV-jx1swd-nK99W3hMvvwp5C2aITTMh3pTO8qSSmgb464QiyrP5Ycduw9L1mMo3b-pPaV4JFu7~WyhobkAz9TF27U9lGc53g__" alt="Max Performance Logo">
-        </div>
-        
-      
+  <a href="https://www.facebook.com/m4kkielce/?locale=pl_PL" class="company">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5qybvt39VjRH1iGP0K-pC4muNT1mdFDpf1A&s" alt="M4K Garage Icon">
+    <div class="info">
+      <h2>M4K Garage</h2>
+      <p>Kielce, ul. Inwestycyjna 11</p>
     </div>
-    <footer>
-        <div class="footer-container">
-          <div class="footer-logo">
-            <img src="../img/badge-check.png">
-          </div>
-          <div class="footer-contacts">
-            <h3><b>Kontakt</b></h3>
-            <p>Adres: Kielce</p>
-            <p>Telefon:<a href="tel:+48817790968">+48817790968</a></p>
-            <p>Email: <a href="mailto:info@sto.com">info@sto.com</a></p>
-            <p>Czas pracy:Pn-P 09:00 - 18:00</p>
-          </div>
-         
-          <div class="footer-socials">
-            <h3><b>Media</b></h3>
-            <a href="#"><img src="../img/facebook-app-symbol.png" alt="Facebook"></a>
-            <a href="#"><img src="../img/instagram.png" alt="Instagram"></a>
-            <a href="#"><img src="../img/twitter.png" alt="Twitter"></a>
-          </div>
-        </div>
-        <div class="footer-copyright">
-          <p>© 2024 Wszelkie prawa zastrzeżone.</p>
-          <button type="button" class="btn btn-outline-dark" onclick="window.history.go(-1); return false;">Back</button>
+  </a>
 
-        </div>
-      </footer>
+  <a href="https://www.facebook.com/autoserwisraczkowski/?locale=sl_SI" class="company">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXja8xkMPPPotP4qOlPtTSsd8kw-0AS_jBdQ&s" alt="Auto Serwis Raczkowski Icon">
+    <div class="info">
+      <h2>Auto Serwis Raczkowski</h2>
+      <p>Kielce, ul. Warszawska 229</p>
+    </div>
+  </a>
+
+  <a href="https://www.facebook.com/p/Mix-Auto-Pro-61550478282665/?_rdr" class="company">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB_Rv6K3-1EkkzWA8Sr69eZzUcWM8K9W6QPA&s" alt="Mix Auto Pro Icon">
+    <div class="info">
+      <h2>Mix Auto Pro</h2>
+      <p>Warszawa, ul. Lewinowska 41</p>
+    </div>
+  </a>
+</div>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-logo">
+      <img src="badge-check.png" alt="Car Service Logo">
+    </div>
+    <div class="footer-contact">
+      <h3>Kontakt</h3>
+      <p>Adres: Kielce</p>
+      <p>Telefon: +48817790968</p>
+      <p>Email: info@sto.com</p>
+      <p>Czas pracy: Pn-P 09:00 - 18:00</p>
+    </div>
+    <div class="footer-social">
+      <h3>Media</h3>
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><img src="facebook-app-symbol.png" alt="Facebook"></a>
+        <a href="#" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+        <a href="#" aria-label="Twitter"><img src="twitter.png" alt="Twitter"></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <p>© 2024 Wszelkie prawa zastrzeżone.</p>
+    <button type="button" class="btn btn-outline-dark" onclick="window.history.back()">Back</button>
+
+  </div>
+</footer>
 </body>
 </html>
