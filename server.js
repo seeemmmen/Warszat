@@ -77,19 +77,7 @@ app.post("/login", async (req, res) => {
 });
 
 // Middleware do weryfikacji tokena z ciasteczek
-const authenticateToken = (req, res, next) => {
-  const token = req.cookies.authToken;
-  if (!token) return res.sendStatus(401);
-
-  jwt.verify(token, SECRET_KEY, (err, user) => {
-    if (err) return res.sendStatus(403);
-    req.user = user;
-    next();
-  });
-};
-
 // Dodajemy to middleware dla tras, które wymagają autoryzacji
-app.use(authenticateToken);
 
 // Trasa rejestracji
 app.post("/register", async (req, res) => {
