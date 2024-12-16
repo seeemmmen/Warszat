@@ -43,7 +43,7 @@
   </form>
   <div id="result">
     <p>
-asdadsd
+
     </p>
   </div>
     
@@ -95,7 +95,7 @@ asdadsd
             const data = Object.fromEntries(formData.entries());
     
             try {
-                const response = await fetch("http://localhost:3000/send-email", {
+                const response = await fetch("/send-email", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(data)
@@ -108,8 +108,8 @@ asdadsd
                   document.getElementById("result").innerHTML="<p style="+"color:red>"+""+result.message;
                   }
             } catch (error) {
-                console.error("Ошибка отправки:", error);
-                alert("Ошибка отправки данных.");
+                console.error("Błąd wysyłania:", error);
+             
             }
         });
     </script>
