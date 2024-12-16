@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
     pass: 'Parol2017' // Zastąp hasłem aplikacji Yahoo
   }
 });
-mongoose.connect("mongodb+srv://seeemmmen:Parol2017@cluster0.y8ytq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+mongoose.connect("mongodb+srv://seeemmmen:Parol2017@web.omhac.mongodb.net/?retryWrites=true&w=majority&appName=Web");
 
 // Definicja schematu użytkownika
 const userSchema = new mongoose.Schema({
@@ -201,6 +201,42 @@ app.post("/register", async (req, res) => {
 });
 
 
+app.post("/send-email", async (req, res) => {
+  const { firstname, lastname, address, gender, bio } = req.body;
+
+  // Проверьте, что все поля заполнены
+  if (!firstname || !lastname || !address || !gender || !bio) {
+      return res.status(400).json({ message: "Wszystkie pola muszą zostać wypełnione!" });
+  }
+
+  const mailOptions = {
+      from: 'rotbartsemen@zohomail.eu',
+      to: 'rotbartsemen@zohomail.eu', // Замените на ваш email
+      subject: 'Nowe informacje z formularza',
+      html: `
+      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background: #f9f9f9;">
+        <p><strong>Imię:</strong> ${firstname}</p>
+        <p><strong>Nazwizko:</strong> ${lastname}</p>
+        <p><strong>Ulica:</strong> ${address}</p>
+        <p><strong>Gender:</strong> ${gender}</p>
+        <p><strong>Wiadomość:</strong></p>
+        <div style="padding: 10px; background: #fff; border: 1px solid #eee; border-radius: 5px;">
+          ${bio.replace(/\n/g, "<br>")}
+        </div>
+        <hr style="margin: 20px 0;">
+        <p style="text-align: center; font-size: 12px; color: #aaa;">Warsztat.inc.</p>
+      </div>
+    `,
+  };
+
+  try {
+      await transporter.sendMail(mailOptions);
+      res.status(200).json({ message: "E-mail został pomyślnie wysłany!" });
+  } catch (error) {
+      console.error("Ошибка отправки email:", error);
+      res.status(500).json({ message: "Nie udało się wysłać wiadomości e-mail." });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Serwer uruchomiony na http://localhost:${PORT}`);

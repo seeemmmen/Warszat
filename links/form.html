@@ -18,46 +18,34 @@
 
     <!-- Formularz użytkownika -->
     <form class="container mt-4" id="userInfoForm" method="post">
-        
-        <!-- Sekcja imienia i nazwiska -->
-        <div class="input-group mb-3">
-            <span class="input-group-text">Imię i nazwisko</span>
-            <input type="text" aria-label="First name" class="form-control" id="firstname">
-            <input type="text" aria-label="Last name" class="form-control" id="lastname">
-        </div>
-        
-        <!-- Sekcja adresu -->
-        <div class="form-group">
+      <div class="input-group mb-3">
+          <span class="input-group-text">Imię i nazwisko</span>
+          <input type="text" name="firstname" aria-label="First name" class="form-control" id="firstname" required>
+          <input type="text" name="lastname" aria-label="Last name" class="form-control" id="lastname" required>
+      </div>
+      <div class="form-group">
           <label for="inputAddress">Adres</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-        </div>
-
-        <!-- Sekcja wyboru płci -->
-        <div class="mb-3">
-            <label for="genderSelect" class="form-label">Płeć</label>
-            <select class="form-select" id="genderSelect" aria-label="Gender select">
-                <option selected>Wybierz płeć</option>
-                <option value="Men">Mężczyzna</option>
-                <option value="Women">Kobieta</option>
-            </select>
-        </div>
-    
-        <!-- Checkbox zgody -->
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Zgadzam się</label>
-        </div>
-
-        <!-- Sekcja do wpisania tekstu -->
-        <div class="form-group">
+          <input type="text" name="address" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+      </div>
+      <div class="mb-3">
+          <label for="genderSelect" class="form-label">Płeć</label>
+          <select class="form-select" name="gender" id="genderSelect" required>
+              <option value="" disabled selected>Wybierz płeć</option>
+              <option value="Men">Mężczyzna</option>
+              <option value="Women">Kobieta</option>
+          </select>
+      </div>
+      <div class="form-group">
           <label for="exampleFormControlTextarea1">Opisz siebie</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        
-        <!-- Przycisk do zapisania formularza -->
-        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Zapisz</button>
-
-    </form>
+          <textarea name="bio" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Zapisz</button>
+  </form>
+  <div id="result">
+    <p>
+asdadsd
+    </p>
+  </div>
     
     <!-- Karta z obrazem i podziękowaniem -->
     <div class="card mt-5" style="width: 18rem;">
@@ -99,6 +87,33 @@
           <button type="button" class="btn btn-outline-dark" onclick="window.history.go(-1); return false;">Wróć</button>
         </div>
       </footer>
+      <script>
+        document.getElementById("userInfoForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+    
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+    
+            try {
+                const response = await fetch("http://localhost:3000/send-email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+    
+                const result = await response.json();
+                if (response.ok) {
+                    document.getElementById("result").innerHTML="<p style="+"color:green>"+""+result.message;
+                } else {
+                  document.getElementById("result").innerHTML="<p style="+"color:red>"+""+result.message;
+                  }
+            } catch (error) {
+                console.error("Ошибка отправки:", error);
+                alert("Ошибка отправки данных.");
+            }
+        });
+    </script>
+    
 
 </body>
 </html>

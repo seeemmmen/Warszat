@@ -1,89 +1,81 @@
-/* Resetowanie marginesów i paddingu dla wszystkich elementów */
 *{
   margin: 0;
   padding: 0;
 }
 
-/* Ustawienie karty na środku strony */
 .card{
   margin: 0 auto;
 }
 
-/* Przycisk z klasy btn-outline-primary umieszczony w lewym dolnym rogu */
 .btn-outline-primary {
   position: absolute;
   bottom: 0;
   left: 0;
 }
 
-/* Stylizacja stopki */
 footer {
-  background-color: #f0f0f0; /* Jasnoszary kolor tła */
-  color: #000000; /* Czarny kolor tekstu */
-  padding: 40px 20px; /* Wewnętrzny odstęp */
-  font-family: "Inria Sans", sans-serif; /* Czcionka */
-  font-weight: 300; /* Lekka czcionka */
-  font-style: normal; /* Normalny styl czcionki */
-  margin-top: 30px; /* Odstęp od elementów powyżej */
+  background-color: #f0f0f0;
+  color: #000000;
+  padding: 40px 20px;
+  font-family: "Inria Sans", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  margin-top: 30px;
 }
 
-/* Kontener stopki z flexboxem do rozmieszczania elementów */
 .footer-container {
-  display: flex; /* Flexbox dla rozmieszczenia */
-  justify-content: space-between; /* Rozstawienie elementów po bokach */
-  flex-wrap: wrap; /* Zawijanie elementów na mniejsze ekrany */
-  max-width: 1200px; /* Maksymalna szerokość kontenera */
-  margin: 0 auto; /* Wyśrodkowanie kontenera */
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Stylizacja logo w stopce */
 .footer-logo img {
-  width: 110px; /* Szerokość obrazu logo */
+  width: 110px;
 }
 
-/* Sekcja kontaktów w stopce */
 .footer-contacts,
 .footer-socials {
-  margin-bottom: 20px; /* Odstęp poniżej sekcji */
+  margin-bottom: 20px;
 }
 
-/* Nagłówki sekcji kontaktów i mediów społecznościowych */
 .footer-contacts h3,
 .footer-socials h3 {
-  font-size: 18px; /* Rozmiar czcionki */
-  margin-bottom: 10px; /* Odstęp poniżej nagłówka */
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
-/* Stylizacja ikon mediów społecznościowych */
 .footer-socials img{
-  width: 24px; /* Szerokość ikon */
-  margin: 2px; /* Odstęp pomiędzy ikonami */
+  width: 24px;
+  margin: 2px;
 }
 
-/* Stylizacja tekstu w sekcji kontaktów */
 .footer-contacts p,
 .footer-contacts a {
-  margin: 0; /* Usunięcie marginesów */
-  padding: 0; /* Usunięcie paddingu */
-  list-style: none; /* Usunięcie listy punktowanej */
-  color: #000000; /* Czarny kolor tekstu */
-  text-decoration: none; /* Usunięcie podkreślenia z linków */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #000000;
+  text-decoration: none;
 }
 
-/* Sekcja praw autorskich */
 .footer-copyright {
-  text-align: center; /* Wyśrodkowanie tekstu */
-  margin-top: 20px; /* Odstęp od góry */
-  font-size: 14px; /* Rozmiar czcionki */
-  border-top: 1px solid #444; /* Cienka linia u góry sekcji */
-  padding-top: 10px; /* Odstęp od góry w sekcji */
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  border-top: 1px solid #444;
+  padding-top: 10px;
 }
 
-/* Stylizacja logo strony głównej */
 #logo{
-  font-size: 25px; /* Rozmiar czcionki */
-  font-family: "Inria Sans", sans-serif; /* Czcionka */
-  font-weight: 400; /* Normalna czcionka */
-  font-style: normal; /* Normalny styl czcionki */
-  text-align: center; /* Wyśrodkowanie tekstu */
+  font-size: 25px;
+  font-family: "Inria Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+}
+
+#result{
+  text-align: center;
 }
