@@ -21,13 +21,17 @@
                 <span style="color: white;">epai</span>
                 <span style="color: orange;">r</span>
             </p>
-
-            <ul>
+            
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-menu">
               <li><a href="../index.html">Główna</a></li>
               <li><a href="../links/zalecenia.html">Zlecenia</a></li>
               <li><a href="../links/firmy.html">Firmy</a></li>
               <li><a href="./regalumin.html">Regulamin</a></li>
+              
             </ul>
+
+        </div>
         </nav>
         <div class="asphyxia">
             <h1>Porady</h1>
@@ -146,6 +150,9 @@
                     $('#fullscreen-container').fadeOut();
                 }
             });
+        });
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
         });
     </script>
 </body>
