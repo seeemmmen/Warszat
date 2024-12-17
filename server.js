@@ -1,6 +1,7 @@
 // server.js
 const express = require("express");
 const mongoose = require("mongoose");
+const session = require('express-session');
 const bodyParser = require("body-parser");
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
@@ -18,6 +19,11 @@ const transporter = nodemailer.createTransport({
     pass: 'Parol2017' // Zastąp hasłem aplikacji Yahoo
   }
 });
+app.use(session({
+  secret: 'warsztat',
+  resave: false,
+  saveUninitialized: false
+}));
 mongoose.connect("mongodb+srv://seeemmmen:Parol2017@web.omhac.mongodb.net/?retryWrites=true&w=majority&appName=Web");
 
 // Definicja schematu użytkownika
@@ -56,15 +62,17 @@ app.post("/login", async (req, res) => {
       const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
         const token = jwt.sign({ username: user.username }, SECRET_KEY); // Generujemy token JWT
-
+        req.session.user = { 
+          username: user.username, 
+        };
         // Ustawiamy token jako cookie httpOnly
         res.cookie("authToken", token, {
           httpOnly: true,
           secure: true, // Ustaw na true dla HTTPS
           maxAge: 7 * 24 * 60 * 60 * 1000 // 7 dni w milisekundach
         });
-
-        return res.status(200).json({ message: "Pomyślne logowanie" });
+      
+        return res.status(200).json({ message: "Pomyślne logowanie"});
       } else {
         return res.status(401).json({ message: "Nieprawidłowe hasło" });
       }
@@ -203,7 +211,7 @@ app.post("/register", async (req, res) => {
 
 app.post("/send-email", async (req, res) => {
   const { firstname, lastname, address, gender, bio } = req.body;
-
+  console.log(req.session.user);
   // Проверьте, что все поля заполнены
   if (!firstname || !lastname || !address || !gender || !bio) {
       return res.status(400).json({ message: "Wszystkie pola muszą zostać wypełnione!" });
