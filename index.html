@@ -89,7 +89,11 @@
            </div>
                        <!-- Formularze logowania i rejestracji -->
 
-            <div class="regestration" style="color: black;">
+            <div class="regestration" style="color: black; ">
+              <div id="logged">
+                <p >You login</p>
+                <a  href="./links/account.html" style="color: black;">Account</a>
+              </div>
                
 
                 <form class="login-form"  action = ""  method="post" id="login-form">
@@ -310,6 +314,13 @@ document.addEventListener("DOMContentLoaded", function () {
           localStorage.setItem("token", data.token); // Zapis tokena w localStorage
           const token=localStorage.getItem("token");
           console.log(token);
+          //document.getElementById("account").className = "account-hide";
+                $(document).ready(function(){
+                  $(".login-container").hide(200);
+                  $("#logged").show(200);
+         
+       
+      });
 
         } else {
           document.getElementById("loginMessage").textContent = data.message;

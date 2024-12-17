@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 $(document).ready(function(){
     $(".sign-container").hide(); // Ukrycie kontenera rejestracji
-
+    $("#logged").hide();
     // Przełączanie między formularzami rejestracji i logowania
     $("#sign-in").click(function(event) {
         $(".sign-container").show(200); // Pokazanie formularza rejestracji

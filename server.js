@@ -64,6 +64,7 @@ app.post("/login", async (req, res) => {
         const token = jwt.sign({ username: user.username }, SECRET_KEY); // Generujemy token JWT
         req.session.user = { 
           username: user.username, 
+          email:user.email,
         };
         // Ustawiamy token jako cookie httpOnly
         res.cookie("authToken", token, {
@@ -243,6 +244,13 @@ app.post("/send-email", async (req, res) => {
   } catch (error) {
       console.error("Ошибка отправки email:", error);
       res.status(500).json({ message: "Nie udało się wysłać wiadomości e-mail." });
+  }
+});
+app.get("/account", (req, res) => {
+  if (req.session.user) {
+      res.status(200).json(req.session.user);
+  } else {
+      res.status(401).json({ message: "Brak danych użytkownika. Zaloguj się!" });
   }
 });
 

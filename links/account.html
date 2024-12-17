@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+</head>
+<body>
+
+    <p id="username"></p>
+
+
+
+
+    <script>
+        async function getAccountData() {
+    try {
+        const response = await fetch("/account", { method: "GET", credentials: "include" });
+        if (response.ok) {
+            const data = await response.json();
+            console.log("Dane użytkownika:", data);
+            document.getElementById("username").innerText = `Witaj, ${data.username} , And your email ${data.email}`;
+        } else {
+            console.log("Nie udało się pobrać danych");
+        }
+    } catch (error) {
+        console.error("Błąd pobierania danych:", error);
+    }
+}
+
+// Вызов функции при загрузке страницы
+window.onload = getAccountData;
+    </script>
+</body>
+</html>

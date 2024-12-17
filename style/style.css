@@ -499,3 +499,9 @@ button:hover {
     left: 100px;
     border-radius: 5px;
 }
+.account{
+    display: none;
+}
+.account-hide{
+    display: inline;
+}
