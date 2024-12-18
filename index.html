@@ -393,14 +393,14 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             if (response.ok) {
-                alert("Вы вышли из системы.");
+                
                 window.location.reload(); // Обновляем страницу
             } else {
                 const data = await response.json();
-                alert(data.message || "Ошибка при выходе.");
+                alert(data.message );
             }
         } catch (error) {
-            console.error("Ошибка при удалении сессии:", error);
+            console.error( error);
         }
     });
    
