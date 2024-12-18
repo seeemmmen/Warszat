@@ -262,32 +262,31 @@ app.post("/send-email", async (req, res) => {
   }
 });
 app.get("/account", (req, res) => {
-  var result=0; 
+  var result = 0; 
   if (req.session.user) {
       res.status(200).json(req.session.user);
   } else {
       res.status(401).json({ message: "Brak danych użytkownika. Zaloguj się!" });
   }
 });
+
 app.put("/account/update", async (req, res) => {
   if (!req.session.user) {
-    return res.status(401).json({ message: "Пожалуйста, войдите в систему" });
+    return res.status(401).json({ message: "Proszę się zalogować." });
   }
 
   const { username } = req.session.user;
   const { name, lastname, gender, address, bio, phone, birthdate } = req.body;
-  var check=0; 
+  var check = 0; 
 
   try {
-    
     const updatedUser = await User.findOneAndUpdate(
       { username },
       { name, lastname, gender, address, bio, phone, birthdate },
-      { new: true } // Возвращает обновленный объект
+      { new: true } // Zwraca zaktualizowany obiekt
     );
 
     if (updatedUser) {
-
       req.session.user = {
         username: updatedUser.username,
         email: updatedUser.email,
@@ -299,24 +298,26 @@ app.put("/account/update", async (req, res) => {
         phone: updatedUser.phone,
         birthdate: updatedUser.birthdate
       };
-      res.status(200).json({ message: "Информация обновлена "+req.session.user.username , user: req.session.user , chekin: check});
+      res.status(200).json({ message: "Informacje zostały zaktualizowane " + req.session.user.username, user: req.session.user, chekin: check });
     } else {
-      res.status(404).json({ message: "Пользователь не найден" });
+      res.status(404).json({ message: "Użytkownik nie został znaleziony." });
     }
   } catch (error) {
-    res.status(500).json({ message: "Ошибка сервера", error });
+    res.status(500).json({ message: "Błąd serwera.", error });
   }
 });
+
 app.post("/logout", (req, res) => {
   req.session.destroy(err => {
       if (err) {
-          console.error("Error destroying session:", err);
-          return res.status(500).json({ message: "Не удалось удалить сессию." });
+          console.error("Błąd podczas usuwania sesji:", err);
+          return res.status(500).json({ message: "Nie udało się usunąć sesji." });
       }
       res.clearCookie("connect.sid");
-      return res.status(200).json({ message: "Сессия удалена успешно." });
+      return res.status(200).json({ message: "Sesja została pomyślnie usunięta." });
   });
 });
+
 
 app.listen(PORT, () => {
   console.log(`Serwer uruchomiony na http://localhost:${PORT}`);
