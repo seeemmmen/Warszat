@@ -4,32 +4,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        #account-info, #update-form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
+    <div id="account-info">
+        <h2>Account Information</h2>
+        <p id="username">Loading...</p>
+    </div>
 
-    <p id="username"></p>
-
-
-
+    <div id="update-form">
+        <h2>Update Your Info</h2>
+        <form id="form">
+            <div class="form-group">
+                <label for="name">First Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your first name">
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" id="lastname" name="lastname" placeholder="Enter your last name">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <input type="text" id="gender" name="gender" placeholder="Enter your gender">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="Enter your address">
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio</label>
+                <textarea id="bio" name="bio" placeholder="Tell something about yourself"></textarea>
+            </div>
+            <button type="button" onclick="updateAccount()">Update</button>
+            <p id="message" class="message"></p>
+        </form>
+    </div>
 
     <script>
         async function getAccountData() {
-    try {
-        const response = await fetch("/account", { method: "GET", credentials: "include" });
-        if (response.ok) {
-            const data = await response.json();
-            console.log("Dane użytkownika:", data);
-            document.getElementById("username").innerText = `Witaj, ${data.username} , And your email ${data.email}`;
-        } else {
-            console.log("Nie udało się pobrać danych");
-        }
-    } catch (error) {
-        console.error("Błąd pobierania danych:", error);
-    }
-}
+            try {
+                const response = await fetch("/account", { method: "GET", credentials: "include" });
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log("User data:", data);
+                    document.getElementById("username").innerText = `Welcome, ${data.username} \n  Your email: ${data.email} \n  Name: ${data.name} \n  LastName: ${data.lastname} \n  Gender: ${data.gender} \n  Address: ${data.address} \n  Bio: ${data.bio}`;
 
-// Вызов функции при загрузке страницы
-window.onload = getAccountData;
+                    // Populate form fields with user data
+                    document.getElementById("name").value = data.name || "";
+                    document.getElementById("lastname").value = data.lastname || "";
+                    document.getElementById("gender").value = data.gender || "";
+                    document.getElementById("address").value = data.address || "";
+                    document.getElementById("bio").value = data.bio || "";
+                } else {
+                    document.getElementById("username").innerText = "Unable to load user data. Please log in.";
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+                document.getElementById("username").innerText = "An error occurred while loading your data.";
+            }
+        }
+
+        async function updateAccount() {
+            const name = document.getElementById("name").value;
+            const lastname = document.getElementById("lastname").value;
+            const gender = document.getElementById("gender").value;
+            const address = document.getElementById("address").value;
+            const bio = document.getElementById("bio").value;
+
+            try {
+                const response = await fetch("/account/update", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({ name, lastname, gender, address, bio }),
+                });
+
+                const messageElement = document.getElementById("message");
+                if (response.ok) {
+                    const data = await response.json();
+                    messageElement.textContent = data.message;
+                    messageElement.classList.remove("error");
+                    console.log("Account updated:", data);
+                    window.location.reload();
+                } else {
+                    const error = await response.json();
+                    messageElement.textContent = error.message || "Failed to update account.";
+                    messageElement.classList.add("error");
+                }
+            } catch (error) {
+                console.error("Error updating account:", error);
+                const messageElement = document.getElementById("message");
+                messageElement.textContent = "An error occurred. Please try again later.";
+                messageElement.classList.add("error");
+            }
+        }
+
+        // Load user data on page load
+        window.onload = getAccountData;
     </script>
 </body>
 </html>

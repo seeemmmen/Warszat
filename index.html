@@ -91,8 +91,10 @@
 
             <div class="regestration" style="color: black; ">
               <div id="logged">
-                <p >You login</p>
+
                 <a  href="./links/account.html" style="color: black;">Account</a>
+                <button id="logout-btn">Выйти</button>
+
               </div>
                
 
@@ -314,13 +316,9 @@ document.addEventListener("DOMContentLoaded", function () {
           localStorage.setItem("token", data.token); // Zapis tokena w localStorage
           const token=localStorage.getItem("token");
           console.log(token);
+          window.location.reload();
           //document.getElementById("account").className = "account-hide";
-                $(document).ready(function(){
-                  $(".login-container").hide(200);
-                  $("#logged").show(200);
-         
-       
-      });
+               
 
         } else {
           document.getElementById("loginMessage").textContent = data.message;
@@ -331,6 +329,27 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+  async function checkinlog() {
+            try {
+                const response = await fetch("/account", { method: "GET", credentials: "include" });
+                if (response.ok) {
+                    const data = await response.json();
+                    $(document).ready(function(){
+                  $(".login-container").hide(200);
+                  $("#logged").show(200);
+         
+       
+                });
+               
+                } else {
+                    console.log("Unable to load user data. Please log in.");
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        }
+  window.onload = checkinlog;
+
   // Obsługa logowania w wersji mobilnej
   document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("login-form-mb").addEventListener("submit", async function (event) {
@@ -366,7 +385,24 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-  
+  document.getElementById("logout-btn").addEventListener("click", async () => {
+        try {
+            const response = await fetch("/logout", {
+                method: "POST",
+                credentials: "include" // Отправляем cookie вместе с запросом
+            });
+
+            if (response.ok) {
+                alert("Вы вышли из системы.");
+                window.location.reload(); // Обновляем страницу
+            } else {
+                const data = await response.json();
+                alert(data.message || "Ошибка при выходе.");
+            }
+        } catch (error) {
+            console.error("Ошибка при удалении сессии:", error);
+        }
+    });
    
       </script>
       <!-- Dodawanie skryptów -->

@@ -20,10 +20,16 @@ const transporter = nodemailer.createTransport({
   }
 });
 app.use(session({
-  secret: 'warsztat',
-  resave: false,
-  saveUninitialized: false
+  secret: 'warsztat', // Секретный ключ для подписи сессий
+  resave: false,      // Не пересохранять сессию, если она не изменялась
+  saveUninitialized: false, // Не сохранять сессии, которые не были инициализированы
+  cookie: {
+    httpOnly: true,   // Ограничить доступ к cookie только через HTTP(S), защита от XSS
+    secure: false,    // Установить в true, если используется HTTPS
+    maxAge: 30 * 24 * 60 * 60 * 1000 // Время жизни cookie: 30 дней
+  }
 }));
+
 mongoose.connect("mongodb+srv://seeemmmen:Parol2017@web.omhac.mongodb.net/?retryWrites=true&w=majority&appName=Web");
 
 // Definicja schematu użytkownika
@@ -31,11 +37,13 @@ const userSchema = new mongoose.Schema({
   username: String,
   password: String,
   email: String,
-  name: String,         // Imię
-  lastname: String,     // Nazwisko
-  gender: String,       // Płeć
-  address: String,      // Adres
-  bio: String           // Biografia
+  name: String,         // Имя
+  lastname: String,     // Фамилия
+  gender: String,       // Пол
+  address: String,      // Адрес
+  bio: String,          // Биография
+  phone: String,        // Телефон
+  birthdate: Date       // Дата рождения
 });
 
 const User = mongoose.model("User", userSchema);
@@ -58,6 +66,7 @@ app.post("/login", async (req, res) => {
 
   try {
     const user = await User.findOne({ username });
+    var result=0;
     if (user) {
       const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
@@ -65,17 +74,23 @@ app.post("/login", async (req, res) => {
         req.session.user = { 
           username: user.username, 
           email:user.email,
+          name:user.name,
+          lastname:user.lastname,
+          bio:user.bio,
+          gender:user.gender,
+          address:user.address
+
         };
+        result=1;
         // Ustawiamy token jako cookie httpOnly
         res.cookie("authToken", token, {
           httpOnly: true,
           secure: true, // Ustaw na true dla HTTPS
           maxAge: 7 * 24 * 60 * 60 * 1000 // 7 dni w milisekundach
         });
-      
         return res.status(200).json({ message: "Pomyślne logowanie"});
       } else {
-        return res.status(401).json({ message: "Nieprawidłowe hasło" });
+        return res.status(401).json({ message: "Nieprawidłowe hasło"});
       }
     } else {
       return res.status(401).json({ message: "Nie znaleziono użytkownika" });
@@ -247,11 +262,60 @@ app.post("/send-email", async (req, res) => {
   }
 });
 app.get("/account", (req, res) => {
+  var result=0; 
   if (req.session.user) {
       res.status(200).json(req.session.user);
   } else {
       res.status(401).json({ message: "Brak danych użytkownika. Zaloguj się!" });
   }
+});
+app.put("/account/update", async (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ message: "Пожалуйста, войдите в систему" });
+  }
+
+  const { username } = req.session.user;
+  const { name, lastname, gender, address, bio, phone, birthdate } = req.body;
+  var check=0; 
+
+  try {
+    
+    const updatedUser = await User.findOneAndUpdate(
+      { username },
+      { name, lastname, gender, address, bio, phone, birthdate },
+      { new: true } // Возвращает обновленный объект
+    );
+
+    if (updatedUser) {
+
+      req.session.user = {
+        username: updatedUser.username,
+        email: updatedUser.email,
+        name: updatedUser.name,
+        lastname: updatedUser.lastname,
+        gender: updatedUser.gender,
+        address: updatedUser.address,
+        bio: updatedUser.bio,
+        phone: updatedUser.phone,
+        birthdate: updatedUser.birthdate
+      };
+      res.status(200).json({ message: "Информация обновлена "+req.session.user.username , user: req.session.user , chekin: check});
+    } else {
+      res.status(404).json({ message: "Пользователь не найден" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Ошибка сервера", error });
+  }
+});
+app.post("/logout", (req, res) => {
+  req.session.destroy(err => {
+      if (err) {
+          console.error("Error destroying session:", err);
+          return res.status(500).json({ message: "Не удалось удалить сессию." });
+      }
+      res.clearCookie("connect.sid");
+      return res.status(200).json({ message: "Сессия удалена успешно." });
+  });
 });
 
 app.listen(PORT, () => {
