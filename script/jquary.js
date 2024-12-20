@@ -31,7 +31,19 @@ $(document).ready(function(){
         $(".sign-container").hide(200); // Ukrycie formularza rejestracji
     });
 });
-
+$(document).ready(function(){
+    $(".sign-container").hide(); // Ukrycie kontenera rejestracji
+    $("#logged").hide();
+    // Przełączanie między formularzami rejestracji i logowania
+    $("#sign-up-mb").click(function(event) {
+        $(".sign-container").show(200); // Pokazanie formularza rejestracji
+        $(".login-container").hide(200); // Ukrycie formularza logowania
+    });
+    $("#log-up-mb").click(function(event) {
+        $(".login-container").show(200); // Pokazanie formularza logowania
+        $(".sign-container").hide(200); // Ukrycie formularza rejestracji
+    });
+});
 $('body').on('click', '.password-checkbox', function(){
     // Zmiana typu pola hasła na tekst lub hasło
     if ($(this).is(':checked')){
@@ -50,6 +62,25 @@ $('body').on('click', '.password-checkbox', function(){
     }
 });
 
+$(document).ready(function(){
+    var a = 0;
+    $( ".regestration" ).hide(); // Ukrycie sekcji rejestracji
+    $('#open').click(function(){
+        $( ".regestration" ).show(); // Pokazanie sekcji rejestracji
+        if(a == 0){
+            $(".regestration").animate({
+                height: '+=100px'  
+            }, 500); // Animacja rozciągania sekcji
+            a = 1;
+        } else {
+            $(".regestration").animate({
+                height: '-=100px'  
+            }, 500); // Animacja zwijania sekcji
+            a = 0;
+            $( ".regestration" ).hide(500); // Ukrycie sekcji po animacji
+        }
+    });
+});
 $(document).ready(function(){
     var a = 0;
     $( ".regestration" ).hide(); // Ukrycie sekcji rejestracji

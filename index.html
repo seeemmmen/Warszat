@@ -59,9 +59,29 @@
                               <input type="password" id="password_log-mb" name="password_log-mb" required>
                               <label >Password</label>
                           </div>
-                          <button type="submit" id="log-in-bt-mb">Sign In</button>
+                          <button type="submit" id="log-in-bt-mb">Log In</button>
+                          <a href="#" id="sign-up-mb">Sign up</a>
                         </div>
                     </form>
+                    <form class="reg-form-mb" id="reg-form-mb" method="post">
+                      <div class="sign-container">
+                        <h2>Sign up</h2>
+                        <div class="input-group">
+                            <input type="text" id="username_log-mb" name="username_log-mb">
+                            <label >Username</label>
+                        </div>
+                        <div class="input-group">
+                          <input type="password" id="password_log-mb" name="password_log-mb" required>
+                          <label >Password</label>
+                      </div>
+                        <div class="input-group">
+                            <input type="email" id="email_log-mb" name="email_log-mb" required>
+                            <label >Email</label>
+                        </div>
+                        <button type="submit" id="reg-in-bt-mb">Sign In</button>
+                        <a href="#" id="log-up-mb">Log in</a>
+                      </div>
+                  </form>
                            
                          
                     </div>
@@ -269,6 +289,43 @@ document.addEventListener("DOMContentLoaded", () => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
+
+    try {
+      // Wysłanie danych rejestracji na serwer
+      const response = await fetch("/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password ,email}),
+      });
+
+      const result = await response.json();
+      // Wyświetlenie komunikatu odpowiedzi
+      document.getElementById("responseMessage").textContent = result.message+" "+ username;
+      console.log(password);
+      form.reset(); // Resetowanie formularza
+      
+    } catch (error) {
+      console.error("Ошибка:", error);
+      document.getElementById("responseMessage").textContent = "Błąd";
+    }
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("reg-form-mb");
+   // Sprawdzenie, czy formularz istnieje
+  if (!form) {
+    console.error("Форма не найдена!");
+    return;
+  }
+ // Obsługa zdarzenia "submit" dla formularza rejestracji
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();// Zatrzymanie domyślnego zachowania formularza
+
+    const username = document.getElementById("username_log-mb").value;
+    const password = document.getElementById("password_log-mb").value;
+    const email = document.getElementById("email_log-mb").value;
 
     try {
       // Wysłanie danych rejestracji na serwer
