@@ -250,7 +250,7 @@
         </div>
     </div>
     <div id="comments">
-      <textarea id="comment-text" required placeholder="Write your comment..."></textarea>
+      <textarea id="comment-text" required style="resize: none;"></textarea>
       <br>
       <div id="rating">
         <span class="fa fa-star" data-value="1" id="stars"></span>
@@ -270,6 +270,12 @@
       <!-- Comments will be dynamically added here -->
     </div>
     <!-- Stopka -->
+    <div id="fullscreen-container" style="display:none;">
+      <div id="fullscreen-content">
+          
+      </div>
+  </div>
+
     <footer>
         <div class="footer-container">
           <div class="footer-logo">
@@ -294,6 +300,7 @@
           <p>© 2024 Wszelkie prawa zastrzeżone.</p>
 
         </div>
+
       </footer>
       <script>
         
@@ -323,7 +330,7 @@
             const stars = createStars(comment.rating);
 
             commentElement.innerHTML = `
-                <strong>${comment.username || "Anonymous"}</strong>
+                <strong class="thumbnail">${comment.username || "Anonymous"}</strong>
                 <p>${comment.comment}</p>
                 <div>${stars}</div>
                 <small>${new Date(comment.timestamp).toLocaleString()}</small>
@@ -345,10 +352,10 @@
 }
 
 // Helper function to create star rating based on the rating value
-function createStars(rating) {
+function createStars(selectedRating) {
     let starsHtml = '';
     for (let i = 1; i <= 5; i++) {
-        if (i <= rating) {
+        if (i <= selectedRating) {
             starsHtml += `<span class="fa fa-star checked"></span>`;
         } else {
             starsHtml += `<span class="fa fa-star"></span>`;
@@ -365,16 +372,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-let selectedRating = 0; // Переменная для хранения выбранного рейтинга
+var selectedRating = 0; // Переменная для хранения выбранного рейтинга
 
 // Находим все звезды в контейнере #rating
 const stars = document.querySelectorAll('#rating .fa-star');
-
 // Обрабатываем клик на звезды
 stars.forEach(star => {
     star.addEventListener('click', function() {
         selectedRating = parseInt(this.getAttribute('data-value')); // Сохраняем выбранный рейтинг
         updateStars(selectedRating); // Обновляем отображение звезд
+        console.log(selectedRating);
     });
 
     // Обрабатываем наведение на звезды
@@ -390,12 +397,13 @@ stars.forEach(star => {
 });
 
 // Функция для обновления звезд в зависимости от переданного значения
-function updateStars(rating) {
+function updateStars(selectedRating) {
     stars.forEach(star => {
         const value = parseInt(star.getAttribute('data-value'));
-        if (value <= rating) {
+        if (value <= selectedRating) {
             star.classList.add('checked'); // Заполняем звезды до выбранного рейтинга
             star.classList.remove('hover'); // Убираем эффект наведения
+            console.log(value);
         } else {
             star.classList.remove('checked'); // Убираем заполненные звезды
         }

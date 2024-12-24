@@ -543,15 +543,29 @@ button:hover {
 }
 /* Initial star color (gray) */
 #rating .fa-star {
-    color: gray; /* По умолчанию звезды серые */
     cursor: pointer;
     font-size: 30px;
 }
 
-#rating .fa-star.checked {
+#rating .fa-star .checked {
     color: gold; /* Звезды, которые выбраны или на которые наводим курсор, становятся золотыми */
+}
+.checked {
+    color: orange;
 }
 
 #rating .fa-star.hover {
     color: gold; /* Цвет, когда звезды находятся в состоянии наведения */
+}
+#fullscreen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -152,3 +152,18 @@ $(document).ready(function(){
         }
     });
 });
+$(document).ready(function() {
+    $(".thumbnail").click(function(){
+ 
+        
+        console.log("click"); 
+        $('#fullscreen-container').fadeIn();
+    });
+
+    // Zamknięcie pełnoekranowego widoku po kliknięciu poza nim
+    $('#fullscreen-container').on('click', function(event) {
+        if (!$(event.target).closest('#fullscreen-content').length) {
+            $('#fullscreen-container').fadeOut();
+        }
+    });
+});
