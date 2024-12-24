@@ -531,7 +531,7 @@ button:hover {
 }
 #comments textarea{
     border-radius:5px ;
-    width: 500px;
+    width: 50%;
     height: 200px;
     font-size: 18px;
     padding: 20px;
