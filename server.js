@@ -57,13 +57,15 @@ const userSchema = new mongoose.Schema({
 const commentSchema = new mongoose.Schema({
   username: String,
   comment: String,
+  rating: { type: Number, min: 1, max: 5 }, 
   timestamp: { type: Date, default: Date.now },
 });
 
-
-
-
 const Comment = mongoose.model("Comment", commentSchema);
+
+
+
+
 
 const User = mongoose.model("User", userSchema);
 const SECRET_KEY = "your_secret_key"; // Klucz do generowania tokenów JWT
@@ -82,47 +84,46 @@ app.use(cookieParser()); // Do obsługi ciasteczek
 
 
 app.post("/comments", async (req, res) => {
-  const { comment } = req.body;
-  
+  const { comment, rating } = req.body;
+
   // Check if the user is logged in by checking session
   if (!req.session.user) {
-    return res.status(403).json({ message: "You must be logged in to comment." });
+      return res.status(403).json({ message: "You must be logged in to comment." });
   }
 
-  // The username is stored in the session, so no need to send it from the client
   const username = req.session.user.username;
 
-  // Validation: Ensure comment is provided
-  if (!comment) {
-    return res.status(400).json({ message: "Comment is required." });
+  // Validation: Ensure comment and rating are provided
+  if (!comment || !rating) {
+      return res.status(400).json({ message: "Comment and rating are required." });
   }
 
   try {
-    const newComment = new Comment({ username, comment });
-    await newComment.save();
-    
-    // Send a success response
-    res.status(200).json({ message: "Comment saved successfully!" });
+      const newComment = new Comment({ username, comment, rating });
+      await newComment.save();
+
+      // Send a success response
+      res.status(200).json({ message: "Comment saved successfully!" });
   } catch (error) {
-    res.status(500).json({ message: "Error posting comment", error });
+      res.status(500).json({ message: "Error posting comment", error });
   }
 });
+
 app.get("/comments", async (req, res) => {
   try {
-    // Fetch the comments from the database
-    const comments = await Comment.find();
+      // Fetch the comments from the database
+      const comments = await Comment.find();
 
-    // Check if the user is logged in and get the username from the session
-    const user = req.session.user ? req.session.user.username : null;
+      // Check if the user is logged in and get the username from the session
+      const user = req.session.user ? req.session.user.username : null;
 
-    // Send both the comments and the username (user) as a JSON response
-    res.json({ comments, user });
+      // Send both the comments and the username (user) as a JSON response
+      res.json({ comments, user });
   } catch (error) {
-    console.error("Error fetching comments:", error);
-    res.status(500).json({ message: "Error fetching comments", error });
+      console.error("Error fetching comments:", error);
+      res.status(500).json({ message: "Error fetching comments", error });
   }
 });
-
 
 
 

@@ -14,6 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <!-- Dodanie favicon -->
 
@@ -248,11 +250,20 @@
         </div>
     </div>
     <div id="comments">
-      <textarea id="comment-text"  required></textarea>
+      <textarea id="comment-text" required placeholder="Write your comment..."></textarea>
+      <br>
+      <div id="rating">
+        <span class="fa fa-star" data-value="1" id="stars"></span>
+        <span class="fa fa-star" data-value="2" id="stars"></span>
+        <span class="fa fa-star" data-value="3" id="stars"></span>
+        <span class="fa fa-star" data-value="4" id="stars"></span>
+        <span class="fa fa-star" data-value="5" id="stars"></span>
+    </div>
+    
       <br>
       <button onclick="postComment()">Post Comment</button>
-
     </div>
+    
   
     <div id="comments-section">
 
@@ -285,48 +296,65 @@
         </div>
       </footer>
       <script>
+        
      // Function to load and display comments
-async function loadComments() {
-  try {
-    const response = await fetch("/comments");
+     async function loadComments() {
+    try {
+        const response = await fetch("/comments");
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch comments");
+        if (!response.ok) {
+            throw new Error("Failed to fetch comments");
+        }
+
+        const data = await response.json();  // Get the JSON data with both comments and user
+        const { comments, user } = data;     // Destructure the response
+
+        const commentsSection = document.getElementById("comments-section");
+
+        // Clear the current comments before displaying new ones
+        commentsSection.innerHTML = "";
+
+        // Loop through the comments and display them
+        comments.forEach(comment => {
+            const commentElement = document.createElement("div");
+            commentElement.classList.add("comment");
+
+            // Create the rating stars for each comment
+            const stars = createStars(comment.rating);
+
+            commentElement.innerHTML = `
+                <strong>${comment.username || "Anonymous"}</strong>
+                <p>${comment.comment}</p>
+                <div>${stars}</div>
+                <small>${new Date(comment.timestamp).toLocaleString()}</small>
+            `;
+
+            commentsSection.appendChild(commentElement);
+        });
+
+        // Optionally, display a message to indicate the logged-in user (if any)
+        if (user) {
+            console.log(`Logged in as: ${user}`);
+        } else {
+            console.log("No user logged in.");
+        }
+
+    } catch (error) {
+        console.error("Error loading comments:", error);
     }
+}
 
-    const data = await response.json();  // Get the JSON data with both comments and user
-    const { comments, user } = data;     // Destructure the response
-
-    const commentsSection = document.getElementById("comments-section");
-
-    // Clear the current comments before displaying new ones
-    commentsSection.innerHTML = "";
-
-    // Loop through the comments and display them
-    comments.forEach(comment => {
-      const commentElement = document.createElement("div");
-      commentElement.classList.add("comment");
-
-      // Conditionally display the username (it may be null if the user is not logged in)
-      commentElement.innerHTML = `
-        <strong>${comment.username || "Anonymous"}</strong>
-        <p>${comment.comment}</p>
-        <small>${new Date(comment.timestamp).toLocaleString()}</small>
-      `;
-
-      commentsSection.appendChild(commentElement);
-    });
-
-    // Optionally, display a message to indicate the logged-in user (if any)
-    if (user) {
-      console.log(`Logged in as: ${user}`);
-    } else {
-      console.log("No user logged in.");
+// Helper function to create star rating based on the rating value
+function createStars(rating) {
+    let starsHtml = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+            starsHtml += `<span class="fa fa-star checked"></span>`;
+        } else {
+            starsHtml += `<span class="fa fa-star"></span>`;
+        }
     }
-
-  } catch (error) {
-    console.error("Error loading comments:", error);
-  }
+    return starsHtml;
 }
 
 // Call loadComments on page load
@@ -337,30 +365,84 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // Function to handle comment submission
-    async function postComment() {
-      const commentText = document.getElementById("comment-text").value;
+let selectedRating = 0; // Переменная для хранения выбранного рейтинга
 
-      // Send the comment data to the server
-      const response = await fetch("/comments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ comment: commentText }),
-      });
+// Находим все звезды в контейнере #rating
+const stars = document.querySelectorAll('#rating .fa-star');
 
-      if (response.ok) {
-        // Reload comments after successful post
-        loadComments();
+// Обрабатываем клик на звезды
+stars.forEach(star => {
+    star.addEventListener('click', function() {
+        selectedRating = parseInt(this.getAttribute('data-value')); // Сохраняем выбранный рейтинг
+        updateStars(selectedRating); // Обновляем отображение звезд
+    });
 
-      }
+    // Обрабатываем наведение на звезды
+    star.addEventListener('mouseover', function() {
+        const value = parseInt(this.getAttribute('data-value'));
+        updateStars(value); // Обновляем отображение звезд до текущего значения
+    });
+
+    // Обрабатываем уход курсора с звезд
+    star.addEventListener('mouseout', function() {
+        updateStars(selectedRating); // Восстанавливаем отображение звезд в соответствии с выбранным рейтингом
+    });
+});
+
+// Функция для обновления звезд в зависимости от переданного значения
+function updateStars(rating) {
+    stars.forEach(star => {
+        const value = parseInt(star.getAttribute('data-value'));
+        if (value <= rating) {
+            star.classList.add('checked'); // Заполняем звезды до выбранного рейтинга
+            star.classList.remove('hover'); // Убираем эффект наведения
+        } else {
+            star.classList.remove('checked'); // Убираем заполненные звезды
+        }
+    });
+}
+
+// Функция для отображения звезд при наведении
+function highlightStars(value) {
+    stars.forEach(star => {
+        const starValue = parseInt(star.getAttribute('data-value'));
+        if (starValue <= value) {
+            star.classList.add('hover'); // Применяем эффект наведения
+        } else {
+            star.classList.remove('hover'); // Убираем эффект наведения
+        }
+    });
+}
+
+// Функция для отправки комментария
+async function postComment() {
+    const commentText = document.getElementById("comment-text").value;
+
+    // Проверка, чтобы комментарий не был пустым
+    if (!commentText) {
+        alert("Please enter a comment");
+        return;
     }
 
-    // Load comments when the page is loaded
+    const commentData = {
+        comment: commentText,
+        rating: selectedRating, // Включаем выбранный рейтинг
+    };
 
+    // Отправка данных комментария на сервер
+    const response = await fetch("/comments", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(commentData),
+    });
 
-
+    if (response.ok) {
+        // Перезагрузка комментариев после успешной отправки
+        loadComments();
+    }
+}
 
 
 

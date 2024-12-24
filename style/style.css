@@ -541,3 +541,17 @@ button:hover {
     font-weight: 400;
     font-style: normal;
 }
+/* Initial star color (gray) */
+#rating .fa-star {
+    color: gray; /* По умолчанию звезды серые */
+    cursor: pointer;
+    font-size: 30px;
+}
+
+#rating .fa-star.checked {
+    color: gold; /* Звезды, которые выбраны или на которые наводим курсор, становятся золотыми */
+}
+
+#rating .fa-star.hover {
+    color: gold; /* Цвет, когда звезды находятся в состоянии наведения */
+}
