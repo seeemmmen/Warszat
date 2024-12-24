@@ -505,3 +505,39 @@ button:hover {
 .account-hide{
     display: inline;
 }
+
+#logged{
+    width: 250px;
+    text-align: center;
+    margin-top: 50px;
+
+}
+.comment-box { margin-top: 20px; }
+.comment { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+.comment input, .comment textarea { width: 100%; margin-bottom: 10px; }
+
+
+
+#comments{
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+#comments button{
+    margin: 20px;
+}
+#comments textarea{
+    border-radius:5px ;
+    width: 500px;
+    height: 200px;
+    font-size: 18px;
+    padding: 20px;
+}
+#comments-section{
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}

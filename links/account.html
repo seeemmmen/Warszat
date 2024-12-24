@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account</title>
+    <link rel="icon" href="../img/badge-check.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,6 +30,10 @@
         h2 {
             text-align: center;
         }
+        form{
+            width: 400px;
+            text-align: center;
+        }
         .form-group {
             margin-bottom: 15px;
         }
@@ -30,12 +41,14 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            text-align: left;
         }
         .form-group input, .form-group textarea {
-            width: 100%;
+            width: 70%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin: 10px;
         }
         .form-group textarea {
             resize: vertical;
@@ -62,6 +75,73 @@
         .error {
             color: red;
         }
+        footer {
+    background-color: #f0f0f0;
+    color: #000000;
+    padding: 40px 20px;
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* Kontener stopki */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Stylizacja logo w stopce */
+.footer-logo img {
+    width: 110px;
+}
+
+/* Stylizacja kontaktów i linków społecznościowych w stopce */
+.footer-contacts,
+.footer-socials {
+    margin-bottom: 20px;
+}
+
+.footer-contacts h3,
+.footer-socials h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-contacts p,
+.footer-contacts a {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #000000;
+    text-decoration: none;
+}
+
+/* Ikony mediów społecznościowych w stopce */
+.footer-socials a {
+    margin-right: 10px;
+    color: #000000;
+}
+
+.footer-socials img {
+    width: 24px;
+}
+
+/* Sekcja praw autorskich w stopce */
+.footer-copyright {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+}
+.btn {
+    width: 50px;
+    margin: 0 auto;
+    background-color: black;
+}
     </style>
 </head>
 <body>
@@ -97,7 +177,33 @@
             <p id="message" class="message"></p>
         </form>
     </div>
+    <footer>
+        <div class="footer-container">
+          <div class="footer-logo">
+            <img src="../img/badge-check.png">
+          </div>
+          <div class="footer-contacts">
+            <h3>Kontakt</h3>
+            <p>Adres: Kielce</p>
+            <p>Telefon:<a href="tel:+48817790968">+48817790968</a></p>
+            <p>Email: <a href="mailto:info@sto.com">info@sto.com</a></p>
+            <p>Czas pracy:Pn-P 09:00 - 18:00</p>
+          </div>
+         
+          <div class="footer-socials">
+            <h3>Media</h3>
+            <a href=""><img src="../img/facebook-app-symbol.png" alt="Facebook"></a>
+            <a href=""><img src="../img/instagram.png" alt="Instagram"></a>
+            <a href=""><img src="../img/twitter.png" alt="Twitter"></a>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <p>© 2024 Wszelkie prawa zastrzeżone.</p>
+          <button type="button" class="btn btn-outline-dark" onclick="window.history.go(-1); return false;">Back</button>
 
+
+        </div>
+      </footer>
     <script>
         async function getAccountData() {
             try {

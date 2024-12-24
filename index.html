@@ -111,8 +111,9 @@
 
             <div class="regestration" style="color: black; ">
               <div id="logged">
-
-                <a  href="./links/account.html" style="color: black;">Account</a>
+                <p id="logged_result"> </p>
+                <a  href="./links/account.html" style="color: black;"><p>Account</p></a>
+                <br>
                 <button id="logout-btn">Выйти</button>
 
               </div>
@@ -246,6 +247,17 @@
             </div>
         </div>
     </div>
+    <div id="comments">
+      <textarea id="comment-text"  required></textarea>
+      <br>
+      <button onclick="postComment()">Post Comment</button>
+
+    </div>
+  
+    <div id="comments-section">
+
+      <!-- Comments will be dynamically added here -->
+    </div>
     <!-- Stopka -->
     <footer>
         <div class="footer-container">
@@ -273,45 +285,179 @@
         </div>
       </footer>
       <script>
+     // Function to load and display comments
+async function loadComments() {
+  try {
+    const response = await fetch("/comments");
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch comments");
+    }
+
+    const data = await response.json();  // Get the JSON data with both comments and user
+    const { comments, user } = data;     // Destructure the response
+
+    const commentsSection = document.getElementById("comments-section");
+
+    // Clear the current comments before displaying new ones
+    commentsSection.innerHTML = "";
+
+    // Loop through the comments and display them
+    comments.forEach(comment => {
+      const commentElement = document.createElement("div");
+      commentElement.classList.add("comment");
+
+      // Conditionally display the username (it may be null if the user is not logged in)
+      commentElement.innerHTML = `
+        <strong>${comment.username || "Anonymous"}</strong>
+        <p>${comment.comment}</p>
+        <small>${new Date(comment.timestamp).toLocaleString()}</small>
+      `;
+
+      commentsSection.appendChild(commentElement);
+    });
+
+    // Optionally, display a message to indicate the logged-in user (if any)
+    if (user) {
+      console.log(`Logged in as: ${user}`);
+    } else {
+      console.log("No user logged in.");
+    }
+
+  } catch (error) {
+    console.error("Error loading comments:", error);
+  }
+}
+
+// Call loadComments on page load
+document.addEventListener("DOMContentLoaded", () => {
+  loadComments();  // Automatically load and display comments when the page loads
+});
+
+
+
+
+    // Function to handle comment submission
+    async function postComment() {
+      const commentText = document.getElementById("comment-text").value;
+
+      // Send the comment data to the server
+      const response = await fetch("/comments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ comment: commentText }),
+      });
+
+      if (response.ok) {
+        // Reload comments after successful post
+        loadComments();
+
+      }
+    }
+
+    // Load comments when the page is loaded
+
+
+
+
+
+
+
+
         console.log("Скрипт загружен");
         // Oczekiwanie na załadowanie całej zawartości DOM
-document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registration-form");
-   // Sprawdzenie, czy formularz istnieje
+
+  // Check if the form exists
   if (!form) {
     console.error("Форма не найдена!");
     return;
   }
- // Obsługa zdarzenia "submit" dla formularza rejestracji
+
+  // Handle the "submit" event for the registration form
   form.addEventListener("submit", async (event) => {
-    event.preventDefault();// Zatrzymanie domyślnego zachowania formularza
+    event.preventDefault(); // Prevent the default form submission behavior
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
+    const confirmPassword = document.getElementById("confirm-password") ? document.getElementById("confirm-password").value : '';
+
+    // Clear any previous response messages
+    document.getElementById("responseMessage").textContent = "";
+
+    // Validate form inputs
+    const validationError = validateForm(username, email, password, confirmPassword);
+
+    if (validationError) {
+      // If validation fails, show error message
+      document.getElementById("responseMessage").textContent = validationError;
+      return;
+    }
 
     try {
-      // Wysłanie danych rejestracji na serwer
+      // Send registration data to the server
       const response = await fetch("/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password ,email}),
+        body: JSON.stringify({ username, password, email }),
       });
 
       const result = await response.json();
-      // Wyświetlenie komunikatu odpowiedzi
-      document.getElementById("responseMessage").textContent = result.message+" "+ username;
-      console.log(password);
-      form.reset(); // Resetowanie formularza
-      
+
+      if (response.ok) {
+        // Display the success message
+        document.getElementById("responseMessage").textContent = `Registration successful! Welcome, ${username}.`;
+        form.reset(); // Reset the form after successful submission
+      } else {
+        // If the server returns an error
+        document.getElementById("responseMessage").textContent = result.message || "An error occurred.";
+      }
     } catch (error) {
       console.error("Ошибка:", error);
-      document.getElementById("responseMessage").textContent = "Błąd";
+      document.getElementById("responseMessage").textContent = "An error occurred. Please try again.";
     }
   });
+
+  // Validation function
+  function validateForm(username, email, password, confirmPassword) {
+    // Check if all fields are filled
+    if (!username || !email || !password) {
+      return "All fields are required!";
+    }
+
+    // Validate Username: Must be at least 4 characters
+    if (username.length < 4) {
+      return "Username must be at least 4 characters long.";
+    }
+
+    // Validate Email format
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailPattern.test(email)) {
+      return "Please enter a valid email address.";
+    }
+
+    // Validate Password: Minimum 8 characters, at least one uppercase letter, one number
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[a-z]).{8,}$/;
+    if (!passwordPattern.test(password)) {
+      return "Password must be at least 8 characters long, with at least one uppercase letter and one number.";
+    }
+
+    // Check if passwords match (if confirm password is present)
+    if (confirmPassword && password !== confirmPassword) {
+      return "Passwords do not match.";
+    }
+
+    // No errors, return null
+    return null;
+  }
 });
+
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("reg-form-mb");
    // Sprawdzenie, czy formularz istnieje
@@ -397,7 +543,8 @@ document.addEventListener("DOMContentLoaded", function () {
          
        
                 });
-               
+               document.getElementById("logged_result").innerHTML="Witam serdecznie "+data.username;
+               document.get
                 } else {
                     console.log("Unable to load user data. Please log in.");
                 }
