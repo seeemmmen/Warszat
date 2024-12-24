@@ -381,9 +381,9 @@ iframe[src="https://www.google.com/maps/embed?pb=..."] {
 .regestration {
     width: 250px;
     height: 0px;
-    background-color: aliceblue;
+    background-color: #f8f9fad9;
     right: 150px;
-    margin-top: 480px;
+    margin-top: 380px;
     z-index: 10;
 }
 

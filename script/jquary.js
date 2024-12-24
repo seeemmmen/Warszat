@@ -69,13 +69,13 @@ $(document).ready(function(){
         $( ".regestration" ).show(); // Pokazanie sekcji rejestracji
         if(a == 0){
             $(".regestration").animate({
-                height: '+=100px'  
-            }, 500); // Animacja rozciągania sekcji
+                height: '+=0.5px'  
+            }, 200); // Animacja rozciągania sekcji
             a = 1;
         } else {
             $(".regestration").animate({
-                height: '-=100px'  
-            }, 500); // Animacja zwijania sekcji
+                height: '-=0.5px'  
+            }, 200); // Animacja zwijania sekcji
             a = 0;
             $( ".regestration" ).hide(500); // Ukrycie sekcji po animacji
         }
