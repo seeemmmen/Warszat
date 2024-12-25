@@ -27,7 +27,7 @@ app.use(session({
   saveUninitialized: false, // Не сохранять сессии, которые не были инициализированы
   cookie: {
     httpOnly: true,   // Ограничить доступ к cookie только через HTTP(S), защита от XSS
-    secure: false,    // Установить в true, если используется HTTPS
+    secure: true,    // Установить в true, если используется HTTPS
     maxAge: 30 * 24 * 60 * 60 * 1000 // Время жизни cookie: 30 дней
   }
 }));
