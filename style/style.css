@@ -389,18 +389,20 @@ iframe[src="https://www.google.com/maps/embed?pb=..."] {
 
 /* Stylizacja formularzy logowania i rejestracji */
 .login-container {
-    padding: 60px;
     border-radius: 10px;
+    justify-content: center;
 }
 
 .login-form {
     display: flex;
     flex-direction: column;
-    width: 250px;
-    justify-content: center;
+    width: 50%;
     align-items: center;
     padding: 10px;
     color: black;
+    margin: 0 auto;
+    height: 380px;
+    justify-content: center;
     
 }
 

@@ -24,10 +24,10 @@ $(document).ready(function(){
     // Przełączanie między formularzami rejestracji i logowania
     $("#sign-in").click(function(event) {
         $(".sign-container").show(200); // Pokazanie formularza rejestracji
-        $(".login-container").hide(200); // Ukrycie formularza logowania
+        $(".login-form").hide(200); // Ukrycie formularza logowania
     });
     $("#log-in").click(function(event) {
-        $(".login-container").show(200); // Pokazanie formularza logowania
+        $(".login-form").show(200); // Pokazanie formularza logowania
         $(".sign-container").hide(200); // Ukrycie formularza rejestracji
     });
 });

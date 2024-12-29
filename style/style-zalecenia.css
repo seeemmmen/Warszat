@@ -2,7 +2,6 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    /*max-width: 1600px;*/
     margin: 0 auto;
     gap: 20px;
     justify-content: center;
