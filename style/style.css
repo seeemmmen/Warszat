@@ -27,7 +27,7 @@ header {
 /* Górny panel nawigacyjny i logo */
 .top-panel {
     height: 80px;
-    width: 900px;
+    width: 100%;
     justify-content: center;
     margin: 0 auto;
     font-size: 15px;
