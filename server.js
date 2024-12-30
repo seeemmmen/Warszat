@@ -9,6 +9,23 @@ const nodemailer = require('nodemailer');
 const cookieParser = require('cookie-parser'); // Dodajemy cookie-parser do obsługi ciasteczek
 const req = require("express/lib/request");
 const res = require("express/lib/response");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+
+
+
+
+
+
+
+
+
+const genAI = new GoogleGenerativeAI("AIzaSyCA2nMfiqWRHvCK1dK-RhsG1aRG0-v9__0");
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+
+
+
+const history = [];
 
 const app = express();
 const PORT = 3000;
@@ -80,6 +97,26 @@ app.use(cookieParser()); // Do obsługi ciasteczek
 // Trasa logowania
 
 
+app.post("/api/prompt", async (req, res) => {
+  const { prompt } = req.body;
+
+  if (!prompt) {
+      return res.status(400).json({ error: "Введите запрос" });
+  }
+
+  try {
+      const result = await model.generateContent(prompt);
+      const responseText = result.response.text();
+
+      // Сохранение в историю
+      history.push({ prompt, response: responseText });
+
+      res.json({ response: responseText });
+  } catch (error) {
+      console.error("Ошибка при генерации ответа:", error);
+      res.status(500).json({ error: "Ошибка при обработке запроса" });
+  }
+});
 
 
 
