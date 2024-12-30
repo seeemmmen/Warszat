@@ -279,7 +279,7 @@
         function addResponseToHistory(prompt, response) {
             let newText = ""; 
             for (let i = 0; i < response.length; i++){
-                if(response[i]!="*"){
+                if(response[i]!="*" || response[i]!="#" ){
                     newText+=response[i];
                 }
             }
