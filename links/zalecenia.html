@@ -202,9 +202,11 @@
     <textarea id="prompt" placeholder="Введите запрос..."></textarea>
     <button onclick="sendPrompt()">Send</button>
     <div id="responses">
-        <h2>Histroria</h2>
+        <div class="loader"></div>
+
     </div>
 </div>
+
 
  <!-- Stopka strony -->
     <footer>
@@ -245,17 +247,20 @@
         async function sendPrompt() {
             const prompt = document.getElementById("prompt").value;
             if (!prompt) return alert("Введите запрос");
-
+            console.log("loading");
+            document.querySelector(".loader").style.display = 'block';
             try {
                 const response = await fetch("/api/prompt", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ prompt }),
                 });
+                //
                 const data = await response.json();
-
                 if (data.response) {
                     addResponseToHistory(prompt, data.response);
+                    document.querySelector(".loader").style.display = 'none';
+
                 } else {
                     alert(data.error || "Ошибка при отправке запроса");
                 }
@@ -272,10 +277,17 @@
         }
 
         function addResponseToHistory(prompt, response) {
+            let newText = ""; 
+            for (let i = 0; i < response.length; i++){
+                if(response[i]!="*"){
+                    newText+=response[i];
+                }
+            }
+            console.log(newText);
             const responsesDiv = document.getElementById("responses");
             const responseDiv = document.createElement("div");
             responseDiv.classList.add("response");
-            responseDiv.innerHTML = `<strong>Запрос:</strong> ${prompt}<br><strong>Ответ:</strong> ${response}`;
+            responseDiv.innerHTML = `<strong>Запрос:</strong> ${prompt}<br><strong>Ответ:</strong><p> ${newText}</p>`;
             responsesDiv.appendChild(responseDiv);
         }
 

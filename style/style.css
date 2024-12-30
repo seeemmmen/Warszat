@@ -300,9 +300,7 @@ iframe[src="https://www.google.com/maps/embed?pb=..."] {
         margin-top: 20px;
     }
 
-    .map-iframe {
-        width: 300px;
-    }
+    
 }
 @media(min-width:481px){
     #icon-nav-mb{
